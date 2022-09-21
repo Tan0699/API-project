@@ -4,6 +4,7 @@
 
 `<insert data![Airbnb](https://user-images.githubusercontent.com/106413691/191614483-6e268175-ff2c-4c4c-a4f4-7f5ce2f6cc9d.png)
 base schema design here>`
+![Airbnb](https://user-images.githubusercontent.com/106413691/191614567-b47dcb96-187c-48c5-8c13-3e8d467ed6e6.png)
 
 ## API Documentation
 
