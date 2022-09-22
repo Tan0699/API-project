@@ -6,7 +6,9 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-
+// backend/app.js
+// ...
+const { ValidationError } = require('sequelize');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 const app = express();
@@ -60,9 +62,7 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-// backend/app.js
-// ...
-const { ValidationError } = require('sequelize');
+
 
 // ...
 
