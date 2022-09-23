@@ -7,6 +7,21 @@ const { User } = require('../../db/models');
 
 const router = express.Router();
 // backend/routes/api/session.js
+
+// backend/routes/api/session.js
+// ...
+
+// Log out
+router.delete(
+    '/',
+    (_req, res) => {
+      res.clearCookie('token');
+      return res.json({ message: 'success' });
+    }
+  );
+  
+  // ...
+
 // / backend/routes/api/session.js
 // ...
 
