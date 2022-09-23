@@ -7,7 +7,24 @@ const { User } = require('../../db/models');
 
 const router = express.Router();
 // backend/routes/api/session.js
+// backend/routes/api/session.js
+// ...
 
+// Restore session user
+router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+      const { user } = req;
+      if (user) {
+        return res.json({
+          user: user.toSafeObject()
+        });
+      } else return res.json({});
+    }
+  );
+  
+  // ...
 // backend/routes/api/session.js
 // ...
 
