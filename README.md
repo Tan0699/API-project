@@ -3,7 +3,7 @@
 ## Database Schema Design
 
 
-`<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/106413691/192348847-130370ff-b3f9-42cd-b807-ed61e5282f8f.png">`
+<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/106413691/192348847-130370ff-b3f9-42cd-b807-ed61e5282f8f.png">
 
 
 ``
