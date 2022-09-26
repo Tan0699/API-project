@@ -4,7 +4,7 @@
 
 ![airbnb-dbdiagram]
 
-[airbnb-dbdiagram]:<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/106413691/192348358-d510cb91-80a2-4784-9846-5183c164e4ed.png">
+[airbnb-dbdiagram]:<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/106413691/192348694-30221942-ff48-4612-9ff1-91f56e8a8a92.png">
 
 
 ``
