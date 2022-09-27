@@ -14,10 +14,12 @@ module.exports = {
         references: { model: 'Spots'}
       },
       url: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
       },
       preview: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull:true
       },
       createdAt: {
         allowNull: false,

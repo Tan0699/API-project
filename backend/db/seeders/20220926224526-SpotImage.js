@@ -20,7 +20,7 @@ module.exports = {
     {
       spotId:2,
       url: "Irvine.com",
-      preview:true
+      preview:false
     },{
       spotId:3,
       url: "Grove.com",
