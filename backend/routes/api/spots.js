@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     //  const starAvg = await Review.findAll({
     //     order:[['userId']],
     //     include: [{model: Review,attributes: ['avgRating']}]})
-
+//done
     const newSpot = {}
     newSpot.Spot = await Spot.findAll({ raw: true })
    
