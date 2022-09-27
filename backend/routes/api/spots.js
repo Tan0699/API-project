@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
             raw:true
         })
+        avg = Math.round(avg * 100) / 100
         const allowPreview = await SpotImage.findOne({
             where: {spotId: spott.id,preview:true },
             attributes:['url'],
