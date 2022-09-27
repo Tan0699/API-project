@@ -29,7 +29,9 @@ router.get('/', async (req, res) => {
             attributes:['url'],
             raw:true
         })
-       spott.avgRating = (avg[0].average).toFixed(1)
+        console.log(avg[0].average)
+        console.log(typeof(avg[0].average))
+       spott.avgRating = ((avg[0].average).toFixed(1))
        if(allowPreview){
         spott.previewImage = allowPreview.url
        }
