@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('reviewImages', [
+     await queryInterface.bulkInsert('ReviewImages', [
       {
         reviewId:1,
         url: "WestminsterImage.com"
@@ -50,7 +50,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
      const Op = Sequelize.Op;
-     await queryInterface.bulkDelete('reviewImages',{
+     await queryInterface.bulkDelete('ReviewImages',{
        reviewId:{[Op.in] : [1,2,3,4,5,6,7]}
      },{});
   }
