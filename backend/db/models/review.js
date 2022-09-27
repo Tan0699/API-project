@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const { READCOMMITTED } = require('sequelize/types/table-hints');
+// const { READCOMMITTED } = require('sequelize/types/table-hints');
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     /**
@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Review.hasMany(models.reviewImage,{foreignKey:"reviewId"}),
+      Review.hasMany(models.ReviewImage,{foreignKey:"reviewId"}),
       Review.belongsTo(models.User,{foreignKey:"userId"}),
       Review.belongsTo(models.Spot,{foreignKey:"spotId"})
     }
   }
   Review.init({
     spotId: DataTypes.INTEGER,
-    userId: DataTypes.Integer,
+    userId: DataTypes.INTEGER,
     review: DataTypes.STRING,
     stars: DataTypes.INTEGER
   }, {
