@@ -103,4 +103,21 @@ router.get('/', async (req, res) => {
     return res.json(newSpot.Spot)
   })
 
+  router.post('/',requireAuth, async (req, res) => {
+    const {address,city,state,country,lat,lng,name,description,price} = req.body
+    const createSpot = await Spot.create({
+        ownerId:req.user.id,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+    })
+    return res.json(createSpot) //status is 200 but doc says need 201?
+  })                                 // revisit later 
+
 module.exports = router;
