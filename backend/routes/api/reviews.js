@@ -9,6 +9,7 @@ const { Review,ReviewImage } = require('../../db/models');
 const {sequelize} = require('../../db/models')
 const {User} = require('../../db/models')
 
+//Get all Reviews of the Current User
 router.get('/current',requireAuth, async (req, res) => {
     const newSpot = {}
     newSpot.Reviews = await Review.findAll({

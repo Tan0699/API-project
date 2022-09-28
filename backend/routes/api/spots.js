@@ -10,7 +10,7 @@ const {sequelize} = require('../../db/models')
 const {User} = require('../../db/models')
 
 
-
+// Get all Spots
 router.get('/', async (req, res) => {
     //  const starAvg = await Review.findAll({
     //     order:[['userId']],
@@ -41,6 +41,9 @@ router.get('/', async (req, res) => {
 }
   );
 
+
+
+  //Get all Spots owned by the Current User
   router.get('/current',requireAuth, async (req, res) => {
     const newSpot = {}
     newSpot.Spot = await Spot.findAll({
@@ -69,6 +72,8 @@ router.get('/', async (req, res) => {
     return res.json(newSpot)
   })
 
+
+  //Get details of a Spot from an id
   router.get('/:spotId', async (req, res) => {
     const {spotId} =req.params
     const newSpot = {}
@@ -139,6 +144,8 @@ router.get('/', async (req, res) => {
   ];
 
 
+
+  //Create a Spot
   router.post('/',requireAuth,validateSpot, async (req, res) => {
     const {address,city,state,country,lat,lng,name,description,price} = req.body
     const createSpot = await Spot.create({
@@ -156,6 +163,8 @@ router.get('/', async (req, res) => {
     return res.json(createSpot) //status is 200 but doc says need 201?
   })                            // revisit later 
 
+
+  //Delete a Spot
   router.delete('/:spotId',requireAuth, async (req, res) => {
     const {spotId} = req.params
     const destroySpot = await Spot.findByPk(spotId,{where:{ownerId:req.user.id}})
@@ -166,13 +175,21 @@ router.get('/', async (req, res) => {
     return res.json({"message": "Successfully deleted"})
   })
 
+
+ // Get all Reviews by a Spot's id
   router.get('/:spotId/reviews', async (req, res) => {
     const {spotId} = req.params
     const newSpot = {}
-    newSpot.Reviews = await Review.findAll({
+    const allReviews = await Review.findAll({
         raw:true,
         where:{spotId:spotId}
     })
+    console.log(allReviews)
+    if(!allReviews.length){
+        res.status(404)
+        return res.json({"message": "Spot couldn't be found"})
+    }
+    newSpot.Reviews = allReviews
     for (const spott of newSpot.Reviews) {
         const user = await User.findOne({
             where: {id: spott.id},
