@@ -75,7 +75,7 @@ router.get('/', async (req, res) => {
     newSpot.Spot = await Spot.findByPk(spotId,{raw:true})
    
         const owner = await User.findOne({
-            where:{Id:newSpot.Spot.id},
+            where:{id:newSpot.Spot.id},
             attributes:['id','firstName','lastName']
             
         })
