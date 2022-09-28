@@ -74,25 +74,33 @@ router.get('/', async (req, res) => {
     const newSpot = {}
     newSpot.Spot = await Spot.findByPk(spotId,{raw:true})
    
-   
+        const owner = await User.findOne({
+            where:{Id:newSpot.Spot.id},
+            attributes:['id','firstName','lastName']
+            
+        })
+        console.log(owner,"lmao")
         const avg = await Review.findAll({
             where: { spotId: newSpot.Spot.id},
-            attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
+            attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average'],
+                         [sequelize.fn('COUNT',sequelize.col('stars')),'count']],
             raw:true
         })
         const allowPreview = await SpotImage.findOne({
             where: {spotId: newSpot.Spot.id,preview:true },
-            attributes:['url'],
+            attributes:['id','url','preview'],
             raw:true
         })
         console.log(avg[0].average)
         console.log(typeof(avg[0].average))
+        newSpot.Spot.numReviews = (Number(avg[0].count))
         newSpot.Spot.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
-        newSpot.Spot.previewImage = allowPreview.url
+        newSpot.Spot.SpotImages = allowPreview
        }
+       newSpot.Spot.Owner= owner
     
-    return res.json(newSpot)
+    return res.json(newSpot.Spot)
   })
 
 module.exports = router;
