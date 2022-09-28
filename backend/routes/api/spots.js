@@ -103,7 +103,39 @@ router.get('/', async (req, res) => {
     return res.json(newSpot.Spot)
   })
 
-  router.post('/',requireAuth, async (req, res) => {
+  const validateSpot = [
+    check('address')
+      .notEmpty()
+      .withMessage('Street address is required'),
+    check('city')
+      .notEmpty()
+      .withMessage('City is required'),
+    check('state')
+      .notEmpty()
+      .withMessage('State is required'),
+    check('country')
+      .notEmpty()
+      .withMessage('Country is required'),
+    check('lat')
+      .notEmpty()
+      .withMessage('Latitude is not valid'),
+    check('lng')
+      .notEmpty()
+      .withMessage('Longitude is not valid'),
+    check('name')
+      .isLength({ max: 50 })
+      .withMessage('Name must be less than 50 characters'),
+    check('description')
+      .notEmpty()
+      .withMessage('Description is require'),
+    check('price')
+      .notEmpty()
+      .withMessage('Price per day is required'),
+    handleValidationErrors
+  ];
+
+
+  router.post('/',requireAuth,validateSpot, async (req, res) => {
     const {address,city,state,country,lat,lng,name,description,price} = req.body
     const createSpot = await Spot.create({
         ownerId:req.user.id,
