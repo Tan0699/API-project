@@ -4,7 +4,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Spot } = require('../../db/models');
-const { SpotImage } = require('../../db/models');
+const { SpotImage,ReviewImage } = require('../../db/models');
 const { Review } = require('../../db/models');
 const {sequelize} = require('../../db/models')
 const {User} = require('../../db/models')
@@ -165,5 +165,30 @@ router.get('/', async (req, res) => {
     await destroySpot.destroy()
     return res.json({"message": "Successfully deleted"})
   })
+
+  router.get('/:spotId/reviews', async (req, res) => {
+    const {spotId} = req.params
+    const newSpot = {}
+    newSpot.Reviews = await Review.findAll({
+        raw:true,
+        where:{spotId:spotId}
+    })
+    for (const spott of newSpot.Reviews) {
+        const user = await User.findOne({
+            where: {id: spott.id},
+            attributes:['id',"firstName","lastName"],
+            raw:true
+        })
+        const image = await ReviewImage.findAll({
+            where: {reviewId: spott.id,},
+            attributes:['id','url'],
+            raw:true
+        })
+       spott.User = user
+       spott.ReviewImages = image
+    }
+    return res.json(newSpot)
+  })
+
 
 module.exports = router;

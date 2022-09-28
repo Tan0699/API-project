@@ -47,6 +47,6 @@ router.get('/current',requireAuth, async (req, res) => {
     return res.json(newSpot)
   })
 
-
+  
 
 module.exports = router;
