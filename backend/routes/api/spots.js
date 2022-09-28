@@ -105,6 +105,7 @@ router.get('/', async (req, res) => {
 
   const validateSpot = [
     check('address')
+      .exists({ checkFalsy: true })
       .notEmpty()
       .withMessage('Street address is required'),
     check('city')
@@ -125,6 +126,9 @@ router.get('/', async (req, res) => {
     check('name')
       .isLength({ max: 50 })
       .withMessage('Name must be less than 50 characters'),
+    check('name')
+      .notEmpty()
+      .withMessage('Name is not valid'),
     check('description')
       .notEmpty()
       .withMessage('Description is require'),
@@ -150,6 +154,16 @@ router.get('/', async (req, res) => {
         price
     })
     return res.json(createSpot) //status is 200 but doc says need 201?
-  })                                 // revisit later 
+  })                            // revisit later 
+
+  router.delete('/:spotId',requireAuth, async (req, res) => {
+    const {spotId} = req.params
+    const destroySpot = await Spot.findByPk(spotId,{where:{ownerId:req.user.id}})
+    if(!destroySpot){
+        return res.status(404).json({"message": "Spot couldn't be found"})
+    }
+    await destroySpot.destroy()
+    return res.json({"message": "Successfully deleted"})
+  })
 
 module.exports = router;
