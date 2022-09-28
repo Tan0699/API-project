@@ -7,7 +7,8 @@ const { Spot } = require('../../db/models');
 const { SpotImage,ReviewImage } = require('../../db/models');
 const { Review } = require('../../db/models');
 const {sequelize} = require('../../db/models')
-const {User} = require('../../db/models')
+const {User} = require('../../db/models');
+const spotimage = require('../../db/models/spotimage');
 
 
 // Get all Spots
@@ -206,6 +207,36 @@ router.get('/', async (req, res) => {
     }
     return res.json(newSpot)
   })
+
+//Add an Image to a Spot based on the Spot's id
+router.post('/:spotId/images',requireAuth, async (req, res) => {
+    const {spotId} = req.params
+    const{url,preview} = req.body
+    const findSpot = await Spot.findByPk(spotId,{
+        where:{ownerId:req.user.id}
+    })
+    if(!findSpot){
+        res.status(404)
+        return res.json({"message": "Spot couldn't be found",})
+    }
+    const newImage = await SpotImage.create({
+        spotId:findSpot.id,
+        url,
+        preview,
+    })
+    // const showImage = await SpotImage.findOne({
+    //     where:{spotId:newImage.id},
+    //     atrributes:['url','preview']
+     
+    // })
+    const object = {}
+    object.id = newImage.id
+    object.url = newImage.url
+    object.preview = newImage.preview
+    return res.json(object)
+})
+
+
 
 
 module.exports = router;
