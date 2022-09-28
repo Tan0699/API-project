@@ -236,6 +236,27 @@ router.post('/:spotId/images',requireAuth, async (req, res) => {
     return res.json(object)
 })
 
+//Edit a Spot
+router.put('/:spotId',requireAuth,validateSpot, async (req, res) => {
+const {spotId} = req.params
+const {address,city,state,country,lat,lng,name,description,price} = req.body
+const spotFound = await Spot.findByPk(spotId,{where:{ownerId:req.user.id}})
+if (!spotFound){
+    res.status(404)
+    return res.json({"message": "Spot couldn't be found"})
+}
+spotFound.address =address
+spotFound.city = city
+spotFound.state = state
+spotFound.country = country
+spotFound.lat = lat
+spotFound.lng = lng
+spotFound.name = name
+spotFound.description = description
+spotFound.price = price
+await spotFound.save()
+return res.json(spotFound)
+})
 
 
 
