@@ -79,13 +79,19 @@ router.get('/', async (req, res) => {
   router.get('/:spotId', async (req, res) => {
     const {spotId} =req.params
     const newSpot = {}
-    newSpot.Spot = await Spot.findByPk(spotId,{raw:true})
+    const spotFound = await Spot.findByPk(spotId,{raw:true})
+    if(!spotFound){
+      res.status(404)
+      return res.json({"message": "Spot couldn't be found"})
+    }
+    newSpot.Spot = spotFound
    
         const owner = await User.findOne({
             where:{id:newSpot.Spot.id},
             attributes:['id','firstName','lastName']
             
         })
+      
         console.log(owner,"lmao")
         const avg = await Review.findAll({
             where: { spotId: newSpot.Spot.id},
