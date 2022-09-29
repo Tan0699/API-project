@@ -276,9 +276,6 @@ const validateReview = [
     handleValidationErrors
   ];
 
-
-
-
 //Create a Review for a Spot based on the Spot's id
 router.post('/:spotId/reviews',requireAuth,validateReview, async (req, res) => {
     const {spotId} = req.params
@@ -353,5 +350,69 @@ router.get('/:spotId/bookings',requireAuth, async (req, res) => {
     }
     return res.json(theBookings)
 })
+
+
+const validateBooking = [
+  check('startDate')
+    .notEmpty()
+    .withMessage('StartDate is required'),
+  check('endDate')
+    .notEmpty()
+    .withMessage('EndDate is required'),
+  handleValidationErrors
+];
+router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) => {
+  const {startDate, endDate} = req.body
+  if (endDate <= startDate) {
+  return res.json({
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "endDate": "endDate cannot be on or before startDate"
+      }
+    })
+  }
+  console.log(startDate<endDate)
+  const {spotId} = req.params
+  const findSpot = await Spot.findOne({where:{
+    id:spotId
+  }})
+  if(!findSpot){
+    res.status(404)
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+  const booked = await Booking.findAll({
+    raw:true,
+    where:{spotId}
+  })
+  for (let bookings of booked){
+    if((startDate>=bookings.startDate &&startDate<=bookings.endDate)||
+    (endDate>=bookings.startDate &&endDate<=bookings.endDate)){
+      return res.json({
+        "message": "Sorry, this spot is already booked for the specified dates",
+        "statusCode": 403,
+        "errors": {
+          "startDate": "Start date conflicts with an existing booking",
+          "endDate": "End date conflicts with an existing booking"
+        }
+      })
+    }
+  }
+  const newBooking = await Booking.create({
+    spotId,
+    userId:req.user.id,
+    startDate,
+    endDate,
+})
+return res.json(newBooking)
+})
+
+
+
+
+
 
 module.exports = router;
