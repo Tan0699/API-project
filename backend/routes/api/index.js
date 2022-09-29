@@ -14,7 +14,7 @@ const bookingsRouter = require('./bookings.js');
 router.use(restoreUser);
 //...
 router.use('/session', sessionRouter);
-
+//..
 router.use('/spots', spotsRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/bookings', bookingsRouter);
