@@ -8,7 +8,7 @@ const { SpotImage } = require('../../db/models');
 const { Review,ReviewImage } = require('../../db/models');
 const {sequelize} = require('../../db/models')
 const {User} = require('../../db/models')
-
+//testing testing
 //Get all Reviews of the Current User
 router.get('/current',requireAuth, async (req, res) => {
     const newSpot = {}
