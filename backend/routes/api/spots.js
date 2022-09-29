@@ -4,7 +4,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Spot } = require('../../db/models');
-const { SpotImage,ReviewImage } = require('../../db/models');
+const { SpotImage,ReviewImage,Booking } = require('../../db/models');
 const { Review } = require('../../db/models');
 const {sequelize} = require('../../db/models')
 const {User} = require('../../db/models');
@@ -302,6 +302,56 @@ router.post('/:spotId/reviews',requireAuth,validateReview, async (req, res) => {
         stars
     })
     return res.json(newReview)
+})
+
+//Get all Bookings for a Spot based on the Spot's id
+router.get('/:spotId/bookings',requireAuth, async (req, res) => {
+  const {spotId} = req.params
+  const theBookings = {}
+  const myBookings = await Booking.findAll({
+    raw:true,
+    where:{spotId}
+})
+  const searchSpot = await Spot.findByPk(spotId)
+    if(!searchSpot){
+      res.status(404)
+      return res.json( {
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+    }
+    if(searchSpot.ownerId === req.user.id){
+      const findme = await User.findOne({ raw:true,
+        attributes:['id','firstName','lastName'],
+        where:{id:req.user.id}
+        })
+      theBookings.Bookings = myBookings
+      for (let smol of myBookings){
+        smol.User = findme
+      }
+      return res.json(theBookings)
+    }
+    if(searchSpot.ownerId !== req.user.id){
+      const notmyBookings = await Booking.findAll({
+        raw:true,
+        attributes:['spotId','startDate','endDate'],
+        where:{spotId}
+    })
+      return res.json(notmyBookings)
+    }
+
+    for (const spott of theBookings.Bookings) {
+        const allowPreview = await SpotImage.findOne({
+            where: {spotId: spott.id,preview:true },
+            attributes:['url'],
+            raw:true
+        })
+       spott.Spot = spotReviewd
+       if(allowPreview){
+        spotReviewd.previewImage = allowPreview.url
+       }
+    }
+    return res.json(theBookings)
 })
 
 module.exports = router;

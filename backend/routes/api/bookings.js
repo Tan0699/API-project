@@ -33,11 +33,16 @@ router.get('/current',requireAuth, async (req, res) => {
        if(allowPreview){
         spotReviewd.previewImage = allowPreview.url
        }
+       //...
+       //THERE IS PROBALY A MISSING ATTRIBUTE OUTPUT IN ONE OF THE ROUTES WITH SPOTIMG/REVIMG
+       // REMEMBER TO TRIPLE TEST ROUTES
     }
     return res.json(myBookings)
 })
+
+
+
+
 module.exports = router;
 
-  //...
-       //THERE IS PROBALY A MISSING ATTRIBUTE OUTPUT IN ONE OF THE ROUTES WITH SPOTIMG/REVIMG
-       // REMEMBER TO TRIPLE TEST ROUTES
+  
