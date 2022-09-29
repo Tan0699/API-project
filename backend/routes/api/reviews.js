@@ -100,7 +100,7 @@ router.get('/current',requireAuth, async (req, res) => {
 
 
     //Delete a Review
-    router.delete('/:reviewId',requireAuth, async (req, res) => {
+router.delete('/:reviewId',requireAuth, async (req, res) => {
         const {reviewId} = req.params
         const myReview = await Review.findByPk(reviewId,{where:{userId:req.user.id}})
         console.log(myReview)
@@ -109,6 +109,6 @@ router.get('/current',requireAuth, async (req, res) => {
         }
         await myReview.destroy()
         return res.json({"message": "Successfully deleted"})
-      })
+   })
 
 module.exports = router;
