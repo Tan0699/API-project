@@ -73,4 +73,28 @@ router.get('/current',requireAuth, async (req, res) => {
     return res.json(pepe)
   })
 
+
+  const validateReview = [
+    check('review')
+      .notEmpty()
+      .withMessage('Review text is required'),
+      check('stars')
+      .notEmpty()
+      .isInt({max:5},{min:1})
+      .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors]
+  //Edit a Review
+  router.put('/:reviewId',requireAuth,validateReview, async (req, res) => {
+    const {reviewId} = req.params
+    const {review,stars} = req.body
+    const myReview = await Review.findOne({where:{userId:req.user.id,id:reviewId}})
+    if (!myReview){
+        res.status(404)
+        return res.json({"message": "Review couldn't be found"})
+    }
+    myReview.review = review
+    myReview.stars = stars
+    await myReview.save()
+    return res.json(myReview)
+    })
 module.exports = router;
