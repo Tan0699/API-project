@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
   );
 
 
-
+//...
   //Get all Spots owned by the Current User
   router.get('/current',requireAuth, async (req, res) => {
     const newSpot = {}
