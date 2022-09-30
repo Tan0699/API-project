@@ -436,8 +436,8 @@ router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) =>
       console.log(endDate,'2')
       console.log(bookings.endDate,'3')
       console.log(bookings.startDate,'4')
-      console.log(bookings.endDate>startDate,'5')
-      console.log(bookings.endDate<startDate,'6')
+      console.log(Date(bookings.endDate)>Date(startDate),'5')
+      console.log(Date(bookings.endDate)<Date(startDate),'6')
       console.log(Date(bookings.endDate),'7')
       console.log(Date(bookings.startDate),'8')
       console.log(Date(startDate))
@@ -446,6 +446,7 @@ router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) =>
       
     if(((Date(startDate)) >= (Date(bookings.startDate))) && ((Date(startDate) <= (Date(bookings.endDate)))) ||
        (((Date(endDate) >= (Date(bookings.startDate))) && ((Date(endDate) <= (Date(bookings.endDate))))))){
+        console.log 
       return res.json({
         "message": "Sorry, this spot is already booked for the specified dates",
         "statusCode": 403,
