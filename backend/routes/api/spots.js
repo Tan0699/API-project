@@ -237,7 +237,7 @@ let {size,page} = req.query
             raw:true
         })
        spott.User = user
-       if(image){
+       if(image.length){
        spott.ReviewImages = image
        }
     }
