@@ -103,7 +103,7 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
             })
           }
         
-        
+      ///......
         const newBooking = await Booking.create({
           spotId:findBooking.spotId,
           userId:req.user.id,
