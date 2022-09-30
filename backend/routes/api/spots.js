@@ -18,8 +18,32 @@ router.get('/', async (req, res) => {
     //     order:[['userId']],
     //     include: [{model: Review,attributes: ['avgRating']}]})
 //done
+let {size,page} = req.query
+  let pagination = {}
+  if (!page || isNaN(page)) {page = 1}
+  if (!size || isNaN(size)) {size = 20}
+  if(page <=0 ){
+    return res.json({
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "page": "Page must be greater than or equal to 1"}})
+  }
+  if(size <=0 ){
+    return res.json({
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "size": "Size must be greater than or equal to 1"}})
+  }
+  page = parseInt(page);
+  size = parseInt(size);
+  if (page >= 1 && size >= 1) {
+    pagination.limit = size
+    pagination.offset = size * (page - 1)
+  }
     const newSpot = {}
-    newSpot.Spot = await Spot.findAll({ raw: true })
+    newSpot.Spot = await Spot.findAll({ raw: true,...pagination })
    
     for (const spott of newSpot.Spot) {
         const avg = await Review.findAll({
@@ -32,14 +56,15 @@ router.get('/', async (req, res) => {
             attributes:['url'],
             raw:true
         })
-        console.log(avg[0].average)
-        console.log(typeof(avg[0].average))
        spott.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
         spott.previewImage = allowPreview.url
        }
     }
-    return res.json(newSpot)
+
+
+
+    return res.json({newSpot,page,size})
 }
   );
 
