@@ -63,7 +63,7 @@ router.post(
           }
         })
       }
-      
+      //.....
       const user = await User.signup({firstName,lastName,email, username, password });
       console.log( user.firstName)
       console.log( user.lastName)
