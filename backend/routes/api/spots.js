@@ -414,5 +414,4 @@ return res.json(newBooking)
 
 
 
-
 module.exports = router;

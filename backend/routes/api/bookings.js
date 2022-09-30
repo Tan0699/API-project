@@ -6,7 +6,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot } = require('../../db/models');
 const { SpotImage,ReviewImage } = require('../../db/models');
 const { Review } = require('../../db/models');
-const {sequelize} = require('../../db/models')
+const {Sequelize} = require('../../db/models')
 const {User} = require('../../db/models');
 const spotimage = require('../../db/models/spotimage');
 const spot = require('../../db/models/spot');
@@ -81,6 +81,7 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
             console.log(bookings.endDate)
             console.log(bookings.endDate>new Date())
             console.log(bookings.endDate<new Date())
+            console.log(Sequelize.literal('CURRENT_TIMESTAMP'))
             if(bookings.endDate>new Date()){
             
                 return res.json({
@@ -112,7 +113,19 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
 
 //Delete a Booking
 router.delete('/:reviewId',requireAuth, async (req, res) => {
-
+    const {reviewId} = req.params
+    const bookingfound = await Booking.findByPk(reviewId,{where:{userId:req.user.id}})
+    if(!bookingfound){
+        return res.status(404).json({
+            "message": "Booking couldn't be found",
+            "statusCode": 404
+          })
+    }
+    await bookingfound.destroy()
+    return res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+      })
 })
 
 module.exports = router;
