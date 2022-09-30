@@ -32,6 +32,12 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
       .withMessage('Password must be 6 characters or more.'),
+      check('firstName')
+      .exists({ checkFalsy: true })
+      .withMessage("First Name is required"),
+      check('lastName')
+      .exists({ checkFalsy: true })
+      .withMessage("Last Name is required"),
     handleValidationErrors
   ];
   // backend/routes/api/users.js
@@ -42,7 +48,7 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-      const { email, password, username } = req.body;
+      const { firstName,lastName,email,username,password } = req.body;
       const emailinvalid = await User.findOne({
         where:{email}
       })
@@ -55,13 +61,22 @@ router.post(
           }
         })
       }
-      const user = await User.signup({ email, username, password });
+      const user = await User.signup({firstName,lastName,email, username, password });
   
-      await setTokenCookie(res, user);
-  
-      return res.json({
-        user,
-      });
+      const logged = {}
+      // logged.user = user 
+     let token = await setTokenCookie(res, user);
+     console.log( user.firstName)
+     console.log( user.lastName)
+      logged.id = user.id
+      logged.firstName = user.firstName
+      logged.lastName = user.lastName
+      logged.email = user.email
+      logged.username = user.username
+      logged.token = token
+      return res.json(
+        logged
+      );
     }
   );
 // Sign up
