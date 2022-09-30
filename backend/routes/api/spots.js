@@ -336,6 +336,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res) => {
     raw:true,
     where:{spotId}
 })
+console.log(myBookings,"pepe")
   const searchSpot = await Spot.findByPk(spotId)
     if(!searchSpot){
       res.status(404)
@@ -344,14 +345,17 @@ router.get('/:spotId/bookings',requireAuth, async (req, res) => {
         "statusCode": 404
       })
     }
-    if(searchSpot.ownerId === req.user.id){
+    const mySpot = await Spot.findOne({where:{id:spotId,ownerId:req.user.id}})
+    if(mySpot){
       const findme = await User.findOne({ raw:true,
         attributes:['id','firstName','lastName'],
         where:{id:req.user.id}
         })
+        console.log("lmao")
       theBookings.Bookings = myBookings
       for (let smol of myBookings){
         smol.User = findme
+        console.log(smol)
       }
       return res.json(theBookings)
     }
@@ -377,6 +381,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res) => {
     }
     return res.json(theBookings)
 })
+
 
 
 const validateBooking = [
