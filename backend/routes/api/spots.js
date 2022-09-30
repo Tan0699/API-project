@@ -23,6 +23,7 @@ let {size,page} = req.query
   if (!page || isNaN(page)) {page = 1}
   if (!size || isNaN(size)) {size = 20}
   if(page <=0 ){
+    res.status(400)
     return res.json({
       "message": "Validation Error",
       "statusCode": 400,
@@ -30,6 +31,7 @@ let {size,page} = req.query
         "page": "Page must be greater than or equal to 1"}})
   }
   if(size <=0 ){
+    res.status(400)
     return res.json({
       "message": "Validation Error",
       "statusCode": 400,

@@ -114,10 +114,17 @@ router.delete('/:reviewId',requireAuth, async (req, res) => {
         const myReview = await Review.findByPk(reviewId,{where:{userId:req.user.id}})
         console.log(myReview)
         if(!myReview){
-            return res.status(404).json({"message": "Review couldn't be found"})
+            return res.status(404).json({
+                "message": "Review couldn't be found",
+                "statusCode": 404
+              })
         }
         await myReview.destroy()
-        return res.json({"message": "Successfully deleted"})
+        res.status(200)
+        return res.json({
+            "message": "Successfully deleted",
+            "statusCode": 200
+          })
    })
 //..........
 module.exports = router;
