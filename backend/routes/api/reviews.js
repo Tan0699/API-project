@@ -96,7 +96,10 @@ router.get('/current',requireAuth, async (req, res) => {
     const myReview = await Review.findOne({where:{userId:req.user.id,id:reviewId}})
     if (!myReview){
         res.status(404)
-        return res.json({"message": "Review couldn't be found"})
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+          })
     }
     myReview.review = review
     myReview.stars = stars

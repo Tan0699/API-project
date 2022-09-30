@@ -31,12 +31,15 @@ const validateLogin = [
 router.get(
     '/',
     restoreUser,
-    (req, res) => {
+    async (req, res) => {
       const { user } = req;
+      const currentUser = await User.findOne({where:{id:user.id},
+              attributes:['id','lastName','firstName','email','username']})
+      
       if (user) {
-        return res.json({
-          user: user.toSafeObject()
-        });
+        return res.json(
+          currentUser
+        );
       } else return res.json({});
     }
   );
