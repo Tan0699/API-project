@@ -11,7 +11,7 @@ const {User} = require('../../db/models');
 const spotimage = require('../../db/models/spotimage');
 const spot = require('../../db/models/spot');
 
-
+//....
 // Get all Spots
 router.get('/', async (req, res) => {
     //  const starAvg = await Review.findAll({
@@ -42,10 +42,10 @@ let {size,page} = req.query
     pagination.limit = size
     pagination.offset = size * (page - 1)
   }
-    const newSpot = {}
-    newSpot.Spot = await Spot.findAll({ raw: true,...pagination })
+    let newSpot = {}
+    newSpot.Spots = await Spot.findAll({ raw: true,...pagination })
    
-    for (const spott of newSpot.Spot) {
+    for (const spott of newSpot.Spots) {
         const avg = await Review.findAll({
             where: { spotId: spott.id},
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
@@ -56,6 +56,7 @@ let {size,page} = req.query
             attributes:['url'],
             raw:true
         })
+
        spott.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
         spott.previewImage = allowPreview.url
@@ -63,8 +64,9 @@ let {size,page} = req.query
     }
 
 
-
-    return res.json({newSpot,page,size})
+    newSpot.page = page 
+    newSpot.size = size
+    return res.json(newSpot)
 }
   );
 
