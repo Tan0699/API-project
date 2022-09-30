@@ -15,16 +15,21 @@ const { DATEONLY, DATE } = require('sequelize');
 // Get all of the Current User's Bookings
 router.get('/current',requireAuth, async (req, res) => {
     const myBookings = {}
+
     myBookings.Bookings = await Booking.findAll({
         raw:true,
         where:{userId:req.user.id}
     })
+    console.log(myBookings.Bookings,"pepe")
     for (const spott of myBookings.Bookings) {
-        const spotReviewd = await Spot.findOne({
-            where: {id: spott.id,},
+        const spotReviewd = await Spot.findAll({
+            where: {id: spott.spotId,},
             attributes:['id','ownerId','address','city','state','country','lat','lng','name','price'],
             raw:true
+          
         })
+        console.log(spotReviewd)
+        console.log(spott)
         const allowPreview = await SpotImage.findOne({
             where: {spotId: spott.id,preview:true },
             attributes:['url'],
@@ -106,9 +111,9 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
 
 
 //Delete a Booking
-router.delete('/:reviewId',requireAuth, async (req, res) => {
-    const {reviewId} = req.params
-    const bookingfound = await Booking.findByPk(reviewId,{where:{userId:req.user.id}})
+router.delete('/:bookingId',requireAuth, async (req, res) => {
+    const {bookingId} = req.params
+    const bookingfound = await Booking.findByPk(bookingId,{where:{userId:req.user.id}})
     if(!bookingfound){
         return res.status(404).json({
             "message": "Booking couldn't be found",
