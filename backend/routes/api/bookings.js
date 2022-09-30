@@ -20,25 +20,27 @@ router.get('/current',requireAuth, async (req, res) => {
         raw:true,
         where:{userId:req.user.id}
     })
-    console.log(myBookings.Bookings,"pepe")
+    console.log(myBookings.Bookings,"pepe1")
     for (const spott of myBookings.Bookings) {
-        const spotReviewd = await Spot.findAll({
+        let spotReviewd = await Spot.findOne({
             where: {id: spott.spotId,},
             attributes:['id','ownerId','address','city','state','country','lat','lng','name','price'],
             raw:true
-          
         })
-        console.log(spotReviewd)
-        console.log(spott)
+        console.log(spotReviewd,"KAKAKAKKAK")
+        console.log(spott,"lmao")
         const allowPreview = await SpotImage.findOne({
-            where: {spotId: spott.id,preview:true },
+            where: {spotId: spott.spotId,preview:true },
             attributes:['url'],
             raw:true
         })
+        if(allowPreview){
+          spotReviewd.previewImage = allowPreview.url
+          console.log(spotReviewd,"ekekkekek")
+         }
+       console.log(allowPreview,"pepe1")
        spott.Spot = spotReviewd
-       if(allowPreview){
-        spotReviewd.previewImage = allowPreview.url
-       }
+       
        //...
        //THERE IS PROBALY A MISSING ATTRIBUTE OUTPUT IN ONE OF THE ROUTES WITH SPOTIMG/REVIMG
        // REMEMBER TO TRIPLE TEST ROUTES
