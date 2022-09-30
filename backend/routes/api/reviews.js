@@ -63,7 +63,10 @@ router.get('/current',requireAuth, async (req, res) => {
     const imageExist = await ReviewImage.findOne({where:{reviewId}})
     if(imageExist){
         res.status(403)
-        return res.json({"message": "Maximum number of images for this resource was reached"})
+        return res.json({
+            "message": "Maximum number of images for this resource was reached",
+            "statusCode": 403
+          })
     }
     const newImg = await ReviewImage.create({
         reviewId:reviewId,
