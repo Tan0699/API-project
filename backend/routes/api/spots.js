@@ -438,6 +438,9 @@ router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) =>
       console.log(bookings.startDate,'4')
       console.log(bookings.endDate>startDate,'5')
       console.log(bookings.endDate<startDate,'6')
+      console.log(Date(bookings.endDate),'7')
+      console.log(Date(bookings.startDate),'8')
+      
     if(((startDate >= bookings.startDate) && (startDate <= bookings.endDate)) ||
        ((endDate >= bookings.startDate) && (endDate <= bookings.endDate))){
       return res.json({
