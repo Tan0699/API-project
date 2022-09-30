@@ -72,25 +72,18 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
             "statusCode": 404
           })
         }
-        const booked = await Booking.findAll({
-          raw:true,
-          where:{userId:req.user.id}
-        })
-        for (let bookings of booked){
-            console.log(new Date ())
-            console.log(bookings.endDate)
-            console.log(bookings.endDate>new Date())
-            console.log(bookings.endDate<new Date())
-            console.log(Sequelize.literal('CURRENT_TIMESTAMP'))
-            if(bookings.endDate>new Date()){
-            
+
+            const old = findBooking.endDate
+            console.log(new Date(old).getTime())
+            console.log(new Date().getTime())
+            if(new Date(old).getTime()<new Date().getTime()){
                 return res.json({
                     "message": "Past bookings can't be modified",
                     "statusCode": 403
-                  })
+                })
             }
-          if((startDate>=bookings.startDate &&startDate<=bookings.endDate)||
-          (endDate>=bookings.startDate &&endDate<=bookings.endDate)){
+          if((startDate>=findBooking.startDate &&startDate<=findBooking.endDate)||
+          (endDate>=findBooking.startDate &&endDate<=findBooking.endDate)){
             return res.json({
               "message": "Sorry, this spot is already booked for the specified dates",
               "statusCode": 403,
@@ -100,14 +93,15 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
               }
             })
           }
-        }
         
-    //     const newBooking = await Booking.create({
-    //       userId:req.user.id,
-    //       startDate,
-    //       endDate,
-    //   })
-      return res.json(booked)
+        
+        const newBooking = await Booking.create({
+          spotId:findBooking.spotId,
+          userId:req.user.id,
+          startDate,
+          endDate,
+      })
+      return res.json(newBooking)
     })
 
 
