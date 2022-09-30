@@ -109,7 +109,10 @@ let {size,page} = req.query
     const spotFound = await Spot.findByPk(spotId,{raw:true})
     if(!spotFound){
       res.status(404)
-      return res.json({"message": "Spot couldn't be found"})
+      return res.json( {
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
     }
     newSpot.Spot = spotFound
    
@@ -195,6 +198,7 @@ let {size,page} = req.query
         description,
         price
     })
+    res.status(201)
     return res.json(createSpot) //status is 200 but doc says need 201?
   })                            // revisit later 
 
@@ -204,10 +208,17 @@ let {size,page} = req.query
     const {spotId} = req.params
     const destroySpot = await Spot.findByPk(spotId,{where:{ownerId:req.user.id}})
     if(!destroySpot){
-        return res.status(404).json({"message": "Spot couldn't be found"})
+        return res.status(404).json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
+        })
     }
     await destroySpot.destroy()
-    return res.json({"message": "Successfully deleted"})
+    res.status(200)
+    return res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+    })
   })
 
 
@@ -222,7 +233,10 @@ let {size,page} = req.query
     console.log(allReviews)
     if(!allReviews.length){
         res.status(404)
-        return res.json({"message": "Spot couldn't be found"})
+        return res.json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
+        })
     }
     newSpot.Reviews = allReviews
     for (const spott of newSpot.Reviews) {
@@ -282,7 +296,10 @@ const {address,city,state,country,lat,lng,name,description,price} = req.body
 const spotFound = await Spot.findByPk(spotId,{where:{ownerId:req.user.id}})
 if (!spotFound){
     res.status(404)
-    return res.json({"message": "Spot couldn't be found"})
+    return res.json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
 }
 spotFound.address =address
 spotFound.city = city
@@ -407,6 +424,7 @@ const validateBooking = [
 router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) => {
   const {startDate, endDate} = req.body
   if (endDate <= startDate) {
+    res.status(400)
   return res.json({
       "message": "Validation error",
       "statusCode": 400,
@@ -449,6 +467,7 @@ router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) =>
     if(((new Date(startDate)) >= (new Date(bookings.startDate))) && ((new Date(startDate) <= (new Date(bookings.endDate)))) ||
        (((new Date(endDate) >= (new Date(bookings.startDate))) && ((new Date(endDate) <= (new Date(bookings.endDate))))))){
         console.log 
+        res.status(403)
       return res.json({
         "message": "Sorry, this spot is already booked for the specified dates",
         "statusCode": 403,
