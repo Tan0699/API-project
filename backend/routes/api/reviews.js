@@ -55,7 +55,10 @@ router.get('/current',requireAuth, async (req, res) => {
     const reviewed = await Review.findByPk(reviewId,{where:{userId:req.user.id}})
     if (!reviewed){
         res.status(404)
-        return res.json({"message": "Review couldn't be found"})
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+          })
     }
     const imageExist = await ReviewImage.findOne({where:{reviewId}})
     if(imageExist){
