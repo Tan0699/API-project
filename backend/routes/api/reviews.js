@@ -40,7 +40,7 @@ router.get('/current',requireAuth, async (req, res) => {
        spott.User = user
        spott.Spot = spotReviewd
        if(allowPreview){
-        spotReviewd.previewImage = allowPreview
+        spotReviewd.previewImage = allowPreview.url
        }
        spott.ReviewImages = image
     }
