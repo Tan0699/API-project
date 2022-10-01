@@ -116,37 +116,37 @@ let {size,page} = req.query
         "statusCode": 404
       })
     }
-    newSpot.Spot = spotFound
+    newSpot.Spots = spotFound
    
         const owner = await User.findOne({
-            where:{id:newSpot.Spot.ownerId},
+            where:{id:newSpot.Spots.ownerId},
             attributes:['id','firstName','lastName']
             
         })
       
         console.log(owner,"lmao")
         const avg = await Review.findAll({
-            where: { spotId: newSpot.Spot.id},
+            where: { spotId: newSpot.Spots.id},
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average'],
                          [sequelize.fn('COUNT',sequelize.col('stars')),'count']],
             raw:true
         })
         const allowPreview = await SpotImage.findOne({
-            where: {spotId: newSpot.Spot.id,preview:true },
+            where: {spotId: newSpot.Spots.id,preview:true },
             attributes:['id','url','preview'],
             raw:true
         })
         console.log(avg[0].average)
         console.log(typeof(avg[0].average))
-        newSpot.Spot.numReviews = (Number(avg[0].count))
-        newSpot.Spot.avgRating = (Number(avg[0].average).toFixed(1))
+        newSpot.Spots.numReviews = (Number(avg[0].count))
+        newSpot.Spots.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
-        newSpot.Spot.SpotImages = allowPreview
+        newSpot.Spots.SpotImages = allowPreview
        }
        console.log(owner)
-       newSpot.Spot.Owner= owner
+       newSpot.Spots.Owner= owner
     console.log(owner)
-    return res.json(newSpot.Spot)
+    return res.json(newSpot.Spots)
   })
 
   const validateSpot = [
