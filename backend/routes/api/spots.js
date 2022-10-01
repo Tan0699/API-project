@@ -249,7 +249,7 @@ let {size,page} = req.query
             raw:true
         })
         const image = await ReviewImage.findAll({
-            where: {reviewId: spott.id,},
+            where: {reviewId: spott.userId,},
             attributes:['id','url'],
             raw:true
         })
