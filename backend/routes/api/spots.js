@@ -119,7 +119,7 @@ let {size,page} = req.query
     newSpot.Spot = spotFound
    
         const owner = await User.findOne({
-            where:{id:newSpot.Spot.id},
+            where:{id:newSpot.Spot.ownerId},
             attributes:['id','firstName','lastName']
             
         })
@@ -143,8 +143,9 @@ let {size,page} = req.query
        if(allowPreview){
         newSpot.Spot.SpotImages = allowPreview
        }
+       console.log(owner)
        newSpot.Spot.Owner= owner
-    
+    console.log(owner)
     return res.json(newSpot.Spot)
   })
 
