@@ -244,12 +244,12 @@ let {size,page} = req.query
     newSpot.Reviews = allReviews
     for (const spott of newSpot.Reviews) {
         const user = await User.findOne({
-            where: {id: spott.spotId},
+            where: {id: spott.userId},
             attributes:['id',"firstName","lastName"],
             raw:true
         })
         const image = await ReviewImage.findAll({
-            where: {reviewId: spott.userId,},
+            where: {reviewId: spott.id,},
             attributes:['id','url'],
             raw:true
         })
