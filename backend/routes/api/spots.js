@@ -77,12 +77,12 @@ let {size,page} = req.query
   //Get all Spots owned by the Current User
   router.get('/current',requireAuth, async (req, res) => {
     const newSpot = {}
-    newSpot.Spot = await Spot.findAll({
+    newSpot.Spots = await Spot.findAll({
         raw:true,
         where:{ownerId:req.user.id}
     })
    
-    for (const spott of newSpot.Spot) {
+    for (const spott of newSpot.Spots) {
         const avg = await Review.findAll({
             where: { spotId: spott.id},
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
@@ -116,37 +116,37 @@ let {size,page} = req.query
         "statusCode": 404
       })
     }
-    newSpot.Spots = spotFound
+    newSpot.Spot = spotFound
    
         const owner = await User.findOne({
-            where:{id:newSpot.Spots.ownerId},
+            where:{id:newSpot.Spot.ownerId},
             attributes:['id','firstName','lastName']
             
         })
       
         console.log(owner,"lmao")
         const avg = await Review.findAll({
-            where: { spotId: newSpot.Spots.id},
+            where: { spotId: newSpot.Spot.id},
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average'],
                          [sequelize.fn('COUNT',sequelize.col('stars')),'count']],
             raw:true
         })
         const allowPreview = await SpotImage.findOne({
-            where: {spotId: newSpot.Spots.id,preview:true },
+            where: {spotId: newSpot.Spot.id,preview:true },
             attributes:['id','url','preview'],
             raw:true
         })
         console.log(avg[0].average)
         console.log(typeof(avg[0].average))
-        newSpot.Spots.numReviews = (Number(avg[0].count))
-        newSpot.Spots.avgRating = (Number(avg[0].average).toFixed(1))
+        newSpot.Spot.numReviews = (Number(avg[0].count))
+        newSpot.Spot.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
-        newSpot.Spots.SpotImages = allowPreview
+        newSpot.Spot.SpotImages = allowPreview
        }
        console.log(owner)
-       newSpot.Spots.Owner= owner
+       newSpot.Spot.Owner= owner
     console.log(owner)
-    return res.json(newSpot.Spots)
+    return res.json(newSpot.Spot)
   })
 
   const validateSpot = [
