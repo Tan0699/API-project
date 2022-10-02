@@ -131,7 +131,7 @@ let {size,page} = req.query
                          [sequelize.fn('COUNT',sequelize.col('stars')),'count']],
             raw:true
         })
-        const allowPreview = await SpotImage.findOne({
+        const allowPreview = await SpotImage.findAll({
             where: {spotId: newSpot.Spot.id,preview:true },
             attributes:['id','url','preview'],
             raw:true
@@ -391,12 +391,12 @@ console.log(myBookings,"pepe")
       return res.json(theBookings)
     }
     if(searchSpot.ownerId !== req.user.id){
-      const notmyBookings = await Booking.findAll({
+      const Bookings = await Booking.findAll({
         raw:true,
         attributes:['spotId','startDate','endDate'],
         where:{spotId}
     })
-      return res.json(notmyBookings)
+      return res.json({Bookings})
     }
 
     for (const spott of theBookings.Bookings) {
