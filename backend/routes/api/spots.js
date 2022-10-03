@@ -132,7 +132,7 @@ let {size,page} = req.query
             raw:true
         })
         const allowPreview = await SpotImage.findAll({
-            where: {spotId: newSpot.Spot.id,preview:true },
+            where: {spotId: newSpot.Spot.id},
             attributes:['id','url','preview'],
             raw:true
         })
