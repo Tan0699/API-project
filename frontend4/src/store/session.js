@@ -48,7 +48,7 @@ const sessionReducer = (state = initialState, action) => {
       return state;
   }
 };
-
+//....
 // frontend/src/store/session.js
 // ...
 export const restoreUser = () => async dispatch => {
