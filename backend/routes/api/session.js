@@ -40,7 +40,7 @@ router.get(
         return res.json(
           currentUser
         );
-      } else return res.json({});
+      } else return res.json(null);
     }
   );
   
