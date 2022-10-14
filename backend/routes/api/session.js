@@ -31,12 +31,15 @@ const validateLogin = [
 router.get(
     '/',
     restoreUser,
-    (req, res) => {
+    async (req, res) => {
       const { user } = req;
+      const currentUser = await User.findOne({where:{id:user.id},
+              attributes:['id','lastName','firstName','email','username']})
+      
       if (user) {
-        return res.json({
-          user: user.toSafeObject()
-        });
+        return res.json(
+          currentUser
+        );
       } else return res.json({});
     }
   );
@@ -73,19 +76,26 @@ router.post(
       const user = await User.login({ credential, password });
   
       if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next(err);
+        res.status(401)
+        return res.json({
+          "message": "Invalid credentials",
+          "statusCode": 401
+        })
       }
-  
-      await setTokenCookie(res, user);
-  
-      return res.json({
-        user
-      });
+     
+      const logged = {}
+      // logged.user = user 
+     let token = await setTokenCookie(res, user);
+      logged.id = user.id
+      logged.firstName = user.firstName
+      logged.lastName = user.lastName
+      logged.email = user.email
+      logged.username = user.username
+      logged.token = token
+      return res.json(
+        logged
+      );
     }
   );
-
+//...
 module.exports = router;
