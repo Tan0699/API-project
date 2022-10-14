@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
-    return res.json({});
+    res.status(201).json({});
   });
 }
 
@@ -52,13 +52,13 @@ if (process.env.NODE_ENV !== 'production') {
 //backend/routes/index.js
 // ...
 // Add a XSRF-TOKEN cookie
-router.get("/api/csrf/restore", (req, res) => {
-  const csrfToken = req.csrfToken();
-  res.cookie("XSRF-TOKEN", csrfToken);
-  res.status(200).json({
-    'XSRF-Token': csrfToken
-  });
-});
+// router.get("/api/csrf/restore", (req, res) => {
+//   const csrfToken = req.csrfToken();
+//   res.cookie("XSRF-TOKEN", csrfToken);
+//   res.status(200).json({
+//     'XSRF-Token': csrfToken
+//   });
+// });
 // ...
 
 // router.get('/hello/world', function(req, res) {
