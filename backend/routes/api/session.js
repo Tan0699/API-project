@@ -33,16 +33,15 @@ router.get(
     restoreUser,
     async (req, res) => {
       const { user } = req;
-      const currentUser = await User.findOne({where:{id:user.id},
-              attributes:['id','lastName','firstName','email','username']})
-      
+      // const currentUser = await User.findOne({where:{id:user.id},
+      //         attributes:['id','lastName','firstName','email','username']})
       if (user) {
-        return res.json(
-          currentUser
-        );
+        res.json(user.toSafeObject());
+
       } else return res.json(null);
     }
   );
+
   
   // ...
 // backend/routes/api/session.js

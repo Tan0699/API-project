@@ -74,6 +74,24 @@ function SignupFormPage() {
           required
         />
       </label>
+      <label>
+        lastName
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setlastName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        firstName
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setfirstName(e.target.value)}
+          required
+        />
+      </label>
       <button type="submit">Sign Up</button>
     </form>
   );
