@@ -4,7 +4,7 @@
     "react-scripts": "^5.0.1"
   },
   "name": "authenticate-me",
-  "description": "## Database Schema Design",
+  "description": "FnF",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
