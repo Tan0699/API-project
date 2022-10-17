@@ -1,4 +1,4 @@
 import { Link } from 'react-router-dom';
 
 
-export default SpotsUpdate;
+export default SpotCreate;

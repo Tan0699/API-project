@@ -48,6 +48,7 @@ function LoginForm() {
         />
       </label>
       <button className="loginButton" type="submit">Continue</button>
+      <button className="demoButton" type="submit">Demo Login</button>
       </div>
     </form>
   );

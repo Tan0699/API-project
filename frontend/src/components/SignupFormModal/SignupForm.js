@@ -93,8 +93,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button className="signupButton" type="submit">Sign Up</button>
+      <button className="signupButton" type="submit">Continue</button>
     </form>
+    
   );
 }
 
