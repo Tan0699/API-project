@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { getAllSpots, newSpotCreate } from '../../store/SpotsReducer';
 import { useEffect,useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 const SpotCreateForm = ()=> {
 const [address,setAddress] = useState("")
 const [city,setCity] = useState("")
@@ -13,33 +13,52 @@ const [lng,setLng] = useState("")
 const [name,SetName] = useState("")
 const [description,setDescription] = useState("")
 const [price,setPrice] = useState("")
+const [errorMessages, setErrorMessages] = useState([]);
+const history = useHistory();
+const dispatch= useDispatch();
+
+useEffect(()=>{
+  const errors = []
+  if(!address){errors.push("Street address is required")}
+  if(!state){errors.push("State is required")}
+  if(!country){errors.push("Country is required")}
+  if(!city){errors.push("City is required")}
+  if(!description){errors.push("Description is required")}
+  if(!price){errors.push("Price per day is required")}
+  if(!lat){errors.push("Latitude is not valid")}
+  if(!lng){errors.push("Longitude is not valid")}
+  if(!name){errors.push("Name is required")}
+  if(name.length>50){errors.push("Name must be less than 50 characters")}
+  setErrorMessages(errors)
+},[address,state,city,country,name,price,lat,lng,description])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price
+    };
+    
+    let spotcreated;
+    //!!START SILENT
+      spotcreated = await dispatch(newSpotCreate(payload));
+    //!!END
+    if (spotcreated) {
+      //!!START SILENT
+      history.push('/');
+     
+    }
 
 
-const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstName,setfirstName]=useState("")
-  const [lastName,setlastName]=useState("")
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (password === confirmPassword) {
-//       setErrors([]);
-//       return dispatch(sessionActions.signup({ email, username, password,lastName,firstName }))
-//         .catch(async (res) => {
-//           const data = await res.json();
-//           if (data && data.errors) setErrors(data.errors);
-//         });
-//     }
-//     return setErrors(['Confirm Password field must be the same as the Password field']);
-//   };
-
-//   return (
+  }
+  return (
+    <div>pepe</div>
 //     <form className="signup" onSubmit={handleSubmit}>
 //       <div className="welcome">Welcome to FnF</div>
 //       <ul>
@@ -102,7 +121,7 @@ const dispatch = useDispatch();
 //       <button className="signupButton" type="submit">Continue</button>
 //     </form>
     
-//   );
-// }
+  );
+}
 
 export default SpotCreateForm;
