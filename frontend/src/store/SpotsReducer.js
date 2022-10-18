@@ -20,7 +20,7 @@ const selectedSpot = (spot) =>{
     }
 }
 export const getAllSpots = () => async dispatch => {
-    const response = await fetch(`/api/spots`);
+    const response = await csrfFetch(`/api/spots`);
   
     if (response.ok) {
       const list = await response.json();
@@ -28,7 +28,7 @@ export const getAllSpots = () => async dispatch => {
     }
   };
   export const getSelectedSpot = spotId => async dispatch => {
-    const response = await fetch(`/api/spots/${spotId}`);
+    const response = await csrfFetch(`/api/spots/${spotId}`);
   
     if (response.ok) {
       const list = await response.json();
@@ -52,8 +52,9 @@ export const getAllSpots = () => async dispatch => {
         return newState
           ;
           case SPOT_DETAILS: 
-          newState = {...state,oneSpot:{...state.oneSpot}}
+          newState = {...state,everySpot:{...state.everySpot}}
           console.log("newState=>",newState)
+          newState.oneSpot=action.spot
         ;
         return newState
           ;

@@ -17,10 +17,11 @@ return (
             <div className="alltheSpots">
                 {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
+                    <NavLink to={`/spots/${spot.id}`}>{spot.name}
                     <img src={`${spot.previewImage}`}/>
-                    <NavLink to={`/spots/${spot.id}`}>{spot.name}</NavLink>
                     <div>$price {spot.price} night</div>
                     <div>{spot.avgRating}★</div>
+                    </NavLink>
                 </div>
                 ))}
             </div>
