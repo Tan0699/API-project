@@ -13,6 +13,12 @@ const allSpots = (spots) =>{
         spots
     }
 }
+const selectedSpot = (spot) =>{
+    return {
+        type:SPOT_DETAILS,
+        spot
+    }
+}
 export const getAllSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
   

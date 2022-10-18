@@ -15,12 +15,12 @@ return (
     <div className="Container">
         <div>lmao</div>
             <div className="alltheSpots">
-                {theSpots.map(spot =>(
-                    <div>
-                    lmao
+                {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
+                    <img src={`${spot.previewImage}`}/>
                     <NavLink to={`/spots/${spot.id}`}>{spot.name}</NavLink>
-                </div>
+                    <div>$price {spot.price} night</div>
+                    <div>{spot.avgRating}★</div>
                 </div>
                 ))}
             </div>
