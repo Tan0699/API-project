@@ -30,9 +30,11 @@ export const getAllSpots = () => async dispatch => {
     switch (action.type) {
       case ALL_SPOTS: 
         const newState = {...state};
-        action.everySpot.forEach(spot => {
-          newState[spot.id] = spot;
+        console.log("action.spots",action.spots)
+        action.spots.Spots.forEach(spot => {
+          newState.everySpot[spot.id] = spot;
         });
+        console.log("newState",newState)
         return newState
           ;
       default:
