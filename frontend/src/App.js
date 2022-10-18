@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/Spots/AllSpots"
 import ShowAllSpots from "./components/Spots/AllSpots";
 import ShowSpot from './components/Spots/SpotDetails'
+import SpotCreateForm from "./components/Spots/SpotCreate";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path='/spots/:spotId'>
             <ShowSpot/>
+          </Route>
+          <Route path='/spotCreate'>
+            <SpotCreateForm/>
           </Route>
           {/* <Route path="/signup"> */}
             {/* <SignupFormPage /> */}

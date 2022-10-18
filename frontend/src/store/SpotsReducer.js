@@ -19,6 +19,12 @@ const selectedSpot = (spot) =>{
         spot
     }
 }
+const createdSpot = (spot) =>{
+  return {
+      type:CREATE_SPOT,
+      spot
+  }
+}
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
   
@@ -33,6 +39,19 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
       const list = await response.json();
       dispatch(selectedSpot(list));
+    }
+  };
+  export const newSpotCreate = data => async dispatch => {
+    const response = await csrfFetch(`/api/spots`,{
+    method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (response.ok) {
+      const list = await response.json();
+      dispatch(createdSpot(list));
     }
   };
   const initialState = {
@@ -53,8 +72,15 @@ export const getAllSpots = () => async dispatch => {
           ;
           case SPOT_DETAILS: 
           newState = {...state,everySpot:{...state.everySpot}}
-          console.log("newState=>",newState)
+          // console.log("newState=>",newState)
           newState.oneSpot=action.spot
+        ;
+        return newState
+          ;
+          case CREATE_SPOT: 
+          newState = {...state,everySpot:{...state.everySpot}}
+          console.log("newState=>",newState)
+          newState.allSpots[action.spot.id]=action.spot
         ;
         return newState
           ;

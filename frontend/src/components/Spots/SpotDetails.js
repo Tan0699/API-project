@@ -9,12 +9,12 @@ const ShowSpot = ()=> {
 const {spotId} = useParams()
 const dispatch = useDispatch()
 const getspot = useSelector(state => state.spots.oneSpot)
-console.log("getspot:",getspot)
+// console.log("getspot:",getspot)
 
 const getspotImages = getspot.SpotImages
-console.log("getspotImages", getspotImages)
+// console.log("getspotImages", getspotImages)
 const imageUrl = getspotImages
-console.log("imageUrl=>",imageUrl)
+// console.log("imageUrl=>",imageUrl)
 useEffect(()=>{
     dispatch(getSelectedSpot(spotId))
 },[dispatch,spotId])
