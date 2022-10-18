@@ -22,11 +22,11 @@ export const getAllSpots = () => async dispatch => {
     }
   };
   const initialState = {
-    everySpot: [],
-    oneSpot: []
+    everySpot: {},
+    oneSpot:{}
   };
 
-  export default SpotsReducer = (state = initialState, action) => {
+  const SpotsReducer = (state = initialState, action) => {
     switch (action.type) {
       case ALL_SPOTS: 
         const newState = {...state};
@@ -39,3 +39,4 @@ export const getAllSpots = () => async dispatch => {
         return state;
     }
   }
+export default SpotsReducer

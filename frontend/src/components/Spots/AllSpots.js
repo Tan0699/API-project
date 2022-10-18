@@ -2,16 +2,15 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
-const dispatch = useDispatch()
+
 const ShowAllSpots = ()=> {
-const theSpots = useSelector(state => {
-    state.spots
-})
+const theSpots = useSelector(state => state.spots.everySpot)
+console.log("pop",theSpots)
 const dispatch = useDispatch()
 useEffect(()=>{
     dispatch(getAllSpots())
 },[dispatch])
-}
+
 
 return (
     <div className="Container">
@@ -24,9 +23,9 @@ return (
             </div>
     </div>
 )
+}       
 
 
 
 
-
-export default AllSpots;
+export default ShowAllSpots;
