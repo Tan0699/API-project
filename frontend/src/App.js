@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/Spots/AllSpots"
 import ShowAllSpots from "./components/Spots/AllSpots";
+import ShowSpot from './components/Spots/SpotDetails'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,8 +19,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path='/'>
+          <Route exact path='/'>
             <ShowAllSpots/>
+          </Route>
+          <Route path='/spots/:spotId'>
+            <ShowSpot/>
           </Route>
           {/* <Route path="/signup"> */}
             {/* <SignupFormPage /> */}

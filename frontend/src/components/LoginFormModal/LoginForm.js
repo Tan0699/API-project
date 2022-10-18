@@ -48,7 +48,8 @@ function LoginForm() {
         />
       </label>
       <button className="loginButton" type="submit">Continue</button>
-      <button className="demoButton" type="submit">Demo Login</button>
+      <button className="demoButton" type="submit"
+      onClick={()=>{setCredential("Demo-lition");setPassword("password")}}>Demo Login</button>
       </div>
     </form>
   );
