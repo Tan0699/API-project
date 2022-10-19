@@ -9,8 +9,8 @@ const [address,setAddress] = useState("")
 const [city,setCity] = useState("")
 const [state,setState] = useState("")
 const [country,setCountry] = useState("")
-// const [lat,setLat] = useState()
-// const [lng,setLng] = useState()
+const [lat,setLat] = useState()
+const [lng,setLng] = useState()
 const [name,setName] = useState("")
 const [description,setDescription] = useState("")
 const [price,setPrice] = useState()
@@ -32,7 +32,7 @@ useEffect(()=>{
   if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
 },[name,price])
-  const handleSubmit =  (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessages([])
     const payload = {
@@ -40,23 +40,21 @@ useEffect(()=>{
       city,
       state,
       country,
-      // lat,
-      // lng,
+      lat,
+      lng,
       name,
       description,
       price
     };
     
-    
+  
     //!!START SILENT
-     let spotcreated = dispatch(newSpotCreate(payload));
+    let spotcreated = dispatch(newSpotCreate(payload));
     //!!END
     if (spotcreated) {
       //!!START SILENT
       history.push('/');
-     
     }
-
     console.log("errormshshhs",setErrorMessages)
   }
   return (
@@ -64,10 +62,10 @@ useEffect(()=>{
       <>
     <form className="spotC" onSubmit={handleSubmit}>
     <div>
-      {errorMessages.map((error) => (
-        <div>{error}</div>))}
+      {errorMessages.map((error,idx) => (
+        <div key={idx}>{error}</div>))}
         </div>
-      <div className="welcome">plsworkpepe</div>
+      <div className="welcome">plsworkpepeASDFFHDSAJFIADJSJIADSFJIAFDSJIAFDSJI</div>
       <label>
         <input
         placeholder="Name"
@@ -113,7 +111,7 @@ useEffect(()=>{
           required
         />
       </label>
-      {/* <label>
+      <label>
         <input
         placeholder="Latitutde"
           type="text"
@@ -130,7 +128,7 @@ useEffect(()=>{
           onChange={(e) => setLng(e.target.value)}
           required
         />
-      </label> */}
+      </label>
       <label>
         <input
         placeholder="State"

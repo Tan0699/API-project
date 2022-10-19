@@ -31,7 +31,6 @@ const deletedspot = (spotId) =>{
       spotId
   }
 }
-
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
   
@@ -95,14 +94,14 @@ export const getAllSpots = () => async dispatch => {
           case CREATE_SPOT: 
           newState = {...state,everySpot:{...state.everySpot}}
           console.log("newState=>",newState)
-          newState.allSpots[action.spot.id]=action.spot
+          newState.everySpot[action.spot.id]=action.spot
         ;
         return newState
-        case DELETE_SPOT: 
+          ;
+          case DELETE_SPOT: 
           newState = {...state,everySpot:{...state.everySpot}}
           console.log("newState=>",newState)
           delete newState.everySpot[action.spotId]
-          
         ;
         return newState
           ;

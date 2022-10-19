@@ -31,9 +31,9 @@ function App() {
           <Route path='/spotCreate'>
             <SpotCreateForm/>
           </Route>
-          <Route path='/deleted'>
+          {/* <Route exact path='/deleted'>
             <SpotDeleteForm/>
-          </Route>
+          </Route> */}
           {/* <Route path="/signup"> */}
             {/* <SignupFormPage /> */}
           {/* </Route> */}
