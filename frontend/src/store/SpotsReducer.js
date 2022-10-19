@@ -6,6 +6,7 @@ const EDIT_SPOT = 'spots/editSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const SPOT_DETAILS = 'spots/spotDetails'
+const SPOT_IMAGE = 'spots/image'
 
 const allSpots = (spots) =>{
     return {
@@ -35,6 +36,12 @@ const editASpot = (spot) =>{
   return {
       type:EDIT_SPOT,
       spot
+  }
+}
+const addSpotImage = (image) =>{
+  return {
+      type:EDIT_SPOT,
+      image
   }
 }
 export const getAllSpots = () => async dispatch => {
@@ -87,6 +94,19 @@ export const getAllSpots = () => async dispatch => {
       dispatch(editASpot(list));
     }
   }
+  export const createSpotImage = (data,spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`,{
+    method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (response.ok) {
+      const list = await response.json();
+      dispatch(addSpotImage(list));
+    }
+  };
   const initialState = {
     everySpot: {},
     oneSpot:{}
@@ -111,9 +131,11 @@ export const getAllSpots = () => async dispatch => {
         return newState
           ;
           case CREATE_SPOT: 
+          // console.log("normalState",state)
           newState = {...state,everySpot:{...state.everySpot}}
           // console.log("newState=>",newState)
           newState.everySpot[action.spot.id]=action.spot
+          // console.log("newState returned", newState)
         ;
         return newState
           ;
@@ -125,10 +147,17 @@ export const getAllSpots = () => async dispatch => {
         return newState
           ;
           case EDIT_SPOT: 
+          // console.log("normal state",state)
+          // newState = {...state}
           newState = {...state,oneSpot:{...state.oneSpot}}
-          console.log("newState=>",newState)
-          newState.oneSpot[action.spot.id] = action.spot
-          console.log("newState22 =>>",newState)
+          // console.log("newState=>",newState)
+          newState.oneSpot[action.spotId] = action.spot
+          // console.log("newState22 =>>",newState)
+        ;
+        return newState
+        case SPOT_IMAGE: 
+          newState = {...state,oneSpot:{...state.oneSpot}}
+          newState.oneSpot[action.spotId] = action.spot
         ;
         return newState
       default:

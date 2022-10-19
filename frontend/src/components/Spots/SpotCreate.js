@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { getAllSpots, newSpotCreate } from '../../store/SpotsReducer';
+import { createSpotImage, getAllSpots, newSpotCreate } from '../../store/SpotsReducer';
 import { useEffect,useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -14,9 +14,12 @@ const [lng,setLng] = useState()
 const [name,setName] = useState("")
 const [description,setDescription] = useState("")
 const [price,setPrice] = useState()
+const [url,setUrl] = useState("")
+const [preview,setPreview] = useState(true)
 const [errorMessages, setErrorMessages] = useState([]);
 const history = useHistory();
 const dispatch= useDispatch();
+const thisSpot = useSelector(state => state.spots)
 
 useEffect(()=>{
   const errors = []
@@ -46,14 +49,29 @@ useEffect(()=>{
       description,
       price
     };
+    const payloadImage = {
+      url,
+      preview:true
+    }
     
   
     //!!START SILENT
     let spotcreated = dispatch(newSpotCreate(payload));
     //!!END
+    // console.log("spotcreated",spotcreated)
+      // console.log("spotcreated id",spotcreated.id)
+      // console.log("newSpotCreate(payload)",newSpotCreate(payload))
     if (spotcreated) {
       //!!START SILENT
-      history.push('/');
+      // console.log("spotcreated",spotcreated)
+      // console.log("spotcreated id",spotcreated.id)
+      // console.log("newSpotCreate(payload)",newSpotCreate(payload))
+      // console.log("lamo",thisSpot)
+      let imagecreated = dispatch(createSpotImage(payloadImage,spotcreated.id))
+      
+      if(imagecreated){
+        history.push('/')
+      }
     }
     console.log("errormshshhs",setErrorMessages)
   }
@@ -144,6 +162,13 @@ useEffect(()=>{
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
+          required
+        />
+        <input
+        placeholder="Spot Image"
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
           required
         />
       </label>

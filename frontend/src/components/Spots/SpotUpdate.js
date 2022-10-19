@@ -53,7 +53,7 @@ useEffect(()=>{
     
   
     //!!START SILENT
-    let spotupdated = dispatch(editThisSpot(payload));
+    let spotupdated = dispatch(editThisSpot(payload,thisSpot.id));
     //!!END
     if (spotupdated) {
       //!!START SILENT
