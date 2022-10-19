@@ -8,6 +8,8 @@ import GetAllSpots from "./components/Spots/AllSpots"
 import ShowAllSpots from "./components/Spots/AllSpots";
 import ShowSpot from './components/Spots/SpotDetails'
 import SpotCreateForm from "./components/Spots/SpotCreate";
+import DeletedPepehands from "./components/Spots/SpotDelete";
+import SpotDeleteForm from "./components/Spots/SpotDelete";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,6 +30,9 @@ function App() {
           </Route>
           <Route path='/spotCreate'>
             <SpotCreateForm/>
+          </Route>
+          <Route path='/deleted'>
+            <SpotDeleteForm/>
           </Route>
           {/* <Route path="/signup"> */}
             {/* <SignupFormPage /> */}

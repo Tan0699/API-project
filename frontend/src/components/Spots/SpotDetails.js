@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { getSelectedSpot } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { deleteThisSpot } from '../../store/SpotsReducer';
 
 const ShowSpot = ()=> {
 const {spotId} = useParams()
@@ -30,6 +30,10 @@ return (
         <div>{getspot.numReviews}</div>
         <div>{getspot.price}</div>
         <div>{getspot.state}</div>
+        <NavLink to='/deleted'>
+        <button onClick={()=>dispatch(deleteThisSpot(getspot.id))}
+        >DELEETE</button>
+        </NavLink>
         </div>
     
 )

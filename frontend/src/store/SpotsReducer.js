@@ -25,6 +25,13 @@ const createdSpot = (spot) =>{
       spot
   }
 }
+const deletedspot = (spotId) =>{
+  return {
+      type:DELETE_SPOT,
+      spotId
+  }
+}
+
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
   
@@ -54,6 +61,14 @@ export const getAllSpots = () => async dispatch => {
       dispatch(createdSpot(list));
     }
   };
+  export const deleteThisSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`,{
+    method: 'DELETE',
+    })
+    if (response.ok) {
+      dispatch(deletedspot(spotId));
+    }
+  }
   const initialState = {
     everySpot: {},
     oneSpot:{}
@@ -81,6 +96,13 @@ export const getAllSpots = () => async dispatch => {
           newState = {...state,everySpot:{...state.everySpot}}
           console.log("newState=>",newState)
           newState.allSpots[action.spot.id]=action.spot
+        ;
+        return newState
+        case DELETE_SPOT: 
+          newState = {...state,everySpot:{...state.everySpot}}
+          console.log("newState=>",newState)
+          delete newState.everySpot[action.spotId]
+          
         ;
         return newState
           ;
