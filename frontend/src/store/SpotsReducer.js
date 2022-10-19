@@ -31,6 +31,12 @@ const deletedspot = (spotId) =>{
       spotId
   }
 }
+const editASpot = (spot) =>{
+  return {
+      type:EDIT_SPOT,
+      spot
+  }
+}
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
   
@@ -68,6 +74,19 @@ export const getAllSpots = () => async dispatch => {
       dispatch(deletedspot(spotId));
     }
   }
+  export const editThisSpot = (data,spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`,{
+    method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (response.ok) {
+      const list = await response.json();
+      dispatch(editASpot(list));
+    }
+  }
   const initialState = {
     everySpot: {},
     oneSpot:{}
@@ -93,18 +112,25 @@ export const getAllSpots = () => async dispatch => {
           ;
           case CREATE_SPOT: 
           newState = {...state,everySpot:{...state.everySpot}}
-          console.log("newState=>",newState)
+          // console.log("newState=>",newState)
           newState.everySpot[action.spot.id]=action.spot
         ;
         return newState
           ;
           case DELETE_SPOT: 
           newState = {...state,everySpot:{...state.everySpot}}
-          console.log("newState=>",newState)
+          // console.log("newState=>",newState)
           delete newState.everySpot[action.spotId]
         ;
         return newState
           ;
+          case EDIT_SPOT: 
+          newState = {...state,oneSpot:{...state.oneSpot}}
+          console.log("newState=>",newState)
+          newState.oneSpot[action.spot.id] = action.spot
+          console.log("newState22 =>>",newState)
+        ;
+        return newState
       default:
         return state;
     }

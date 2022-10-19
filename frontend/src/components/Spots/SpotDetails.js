@@ -16,6 +16,8 @@ const getspotImages = getspot.SpotImages
 const imageUrl = getspotImages
 // console.log("imageUrl=>",imageUrl)
 const sessionUser = useSelector((state) => state.session.user);
+console.log("sessionuser",sessionUser)
+console.log("getSpotowner",getspot.ownerId)
 useEffect(()=>{
     dispatch(getSelectedSpot(spotId))
 },[dispatch,spotId])
@@ -33,8 +35,12 @@ return (
         <div>{getspot.state}</div>
        
         <NavLink to='/deleted'>
-        <button onClick={()=>dispatch(deleteThisSpot(getspot.id))}
+        <button disabled={!(sessionUser.id===getspot.ownerId)} onClick={()=>dispatch(deleteThisSpot(getspot.id))}
         >DELEETE</button>
+        </NavLink>
+        <NavLink to={`/spots/${getspot.id}/edit`}>
+        <button disabled={!(sessionUser.id===getspot.ownerId)}
+        >UPDATTE</button>
         </NavLink>
       
         </div>

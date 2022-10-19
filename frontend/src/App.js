@@ -10,6 +10,7 @@ import ShowSpot from './components/Spots/SpotDetails'
 import SpotCreateForm from "./components/Spots/SpotCreate";
 import DeletedPepehands from "./components/Spots/SpotDelete";
 import SpotDeleteForm from "./components/Spots/SpotDelete";
+import EditMySpot from "./components/Spots/SpotUpdate";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,11 +26,14 @@ function App() {
           <Route exact path='/'>
             <ShowAllSpots/>
           </Route>
-          <Route path='/spots/:spotId'>
+          <Route exact path='/spots/:spotId'>
             <ShowSpot/>
           </Route>
           <Route path='/spotCreate'>
             <SpotCreateForm/>
+          </Route>
+          <Route eact path='/spots/:spotId/edit'>
+            <EditMySpot/>
           </Route>
           {/* <Route exact path='/deleted'>
             <SpotDeleteForm/>
