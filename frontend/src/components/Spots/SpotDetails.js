@@ -5,6 +5,9 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteThisSpot } from '../../store/SpotsReducer';
 import { deleteThisReview, getSelectedReview } from '../../store/ReviewsReducer';
+import '../SpotsCss/SpotDetails.css';
+
+
 const ShowSpot = ()=> {
 const {spotId} = useParams()
 const dispatch = useDispatch()
@@ -28,11 +31,13 @@ useEffect(()=>{
 return (
     <div className="Container">
          <div>{getspot.name}</div>
+         <div className="pics">
         <img src={`${imageUrl?.[0]?.url}`}/>  
         <img src={`${imageUrl?.[1]?.url}`}/>  
         <img src={`${imageUrl?.[2]?.url}`}/>
         <img src={`${imageUrl?.[3]?.url}`}/>
         <img src={`${imageUrl?.[4]?.url}`}/>
+        </div>
         <div>{getspot.avgRating}</div>
         <div>{getspot.url}</div>
         <div>{getspot.city}</div>
@@ -51,13 +56,17 @@ return (
         <div>{getReviews.Reviews?.[2]?.User.firstName}</div>
         <div>{getReviews.Reviews?.[2]?.review}</div>
         <div>{getReviews.Reviews?.[2]?.stars}</div>
-       
+        <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
         <NavLink to='/'>
-        <button disabled={!(sessionUser.id===getspot.ownerId)} onClick={()=>dispatch(deleteThisSpot(getspot.id))}
+        <button  onClick={()=>dispatch(deleteThisSpot(getspot.id))}
         >DELEETE</button>
         </NavLink>
+        :null}
+        
+        </div>: null}
+        </div>
         <NavLink to={`/spots/${getspot.id}/edit`}>
-        <button disabled={!(sessionUser.id===getspot.ownerId)}
+        <button disabled={!(sessionUser===getspot.ownerId)}
         >UPDATTE</button>
         </NavLink>
         <NavLink to={`/spots/${getspot.id}/reviewCreate`}>

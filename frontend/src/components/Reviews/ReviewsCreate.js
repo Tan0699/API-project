@@ -7,7 +7,7 @@ import { createReview } from '../../store/ReviewsReducer';
 import { useParams } from 'react-router-dom';
 const ReviewsCreateForm = ()=> {
     const [review,setReview] = useState("")
-    const [stars,setstars] = useState("5")
+    const [stars,setstars] = useState()
     const history = useHistory();
 const dispatch= useDispatch();
 const thisSpot = useSelector(state => state.spots)
@@ -33,7 +33,7 @@ const {spotId} = useParams()
     
         <>
       <form className="s" onSubmit={handleSubmit}>
-        <div className="welcome">plsworkpepeASDFFHDSAJFIADJSJIADSFJIAFDSJIAFDSJI</div>
+        {/* <div className="welcome">plsworkpepeASDFFHDSAJFIADJSJIADSFJIAFDSJIAFDSJI</div> */}
         
         <label>
           <input
@@ -55,6 +55,8 @@ const {spotId} = useParams()
             required
           />
         </label>
+        
+
         <button className="createREV" type="submit">create dis dis</button>
       </form>
       </>

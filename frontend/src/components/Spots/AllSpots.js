@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
-
+import '../SpotsCss/AllSpots.css';
 const ShowAllSpots = ()=> {
 const theSpots = useSelector(state => Object.values(state.spots.everySpot))
 // console.log("pop",theSpots)
@@ -18,7 +18,7 @@ return (
                 {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
                     <NavLink to={`/spots/${spot.id}`}>{spot.name}
-                    <img src={`${spot.previewImage}`}/>
+                    <img id="picture" src={`${spot.previewImage}`}/>
                     <div>$price {spot.price} night</div>
                     <div>{spot.avgRating}★</div>
                     </NavLink>

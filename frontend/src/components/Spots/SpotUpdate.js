@@ -175,13 +175,6 @@ useEffect(()=>{
             required
           />
         </label>
-        <input
-        placeholder="Spot Image"
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
         <button disabled={!!errorMessages.length} className="createspot" type="submit">Host dis</button>
       </form>
       
