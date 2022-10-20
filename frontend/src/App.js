@@ -11,6 +11,7 @@ import SpotCreateForm from "./components/Spots/SpotCreate";
 import DeletedPepehands from "./components/Spots/SpotDelete";
 import SpotDeleteForm from "./components/Spots/SpotDelete";
 import EditMySpot from "./components/Spots/SpotUpdate";
+import ReviewsCreateForm from "./components/Reviews/ReviewsCreate";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,8 +33,11 @@ function App() {
           <Route path='/spotCreate'>
             <SpotCreateForm/>
           </Route>
-          <Route eact path='/spots/:spotId/edit'>
+          <Route exact path='/spots/:spotId/edit'>
             <EditMySpot/>
+          </Route>
+          <Route exact path='/spots/:spotId/reviewCreate'>
+            <ReviewsCreateForm/>
           </Route>
           {/* <Route exact path='/deleted'>
             <SpotDeleteForm/>

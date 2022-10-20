@@ -4,22 +4,26 @@ import { getSelectedSpot } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteThisSpot } from '../../store/SpotsReducer';
-
+import { getSelectedReview } from '../../store/ReviewsReducer';
 const ShowSpot = ()=> {
 const {spotId} = useParams()
 const dispatch = useDispatch()
 const getspot = useSelector(state => state.spots.oneSpot)
-console.log("getspot:",getspot)
+const getReviews = useSelector(state => state.rev.oneReview)
+console.log("reviews",getReviews)
+// console.log("getspot:",getspot)
 
 const getspotImages = getspot.SpotImages
 // console.log("getspotImages", getspotImages)
 const imageUrl = getspotImages
 // console.log("imageUrl=>",imageUrl)
 const sessionUser = useSelector((state) => state.session.user);
-console.log("sessionuser",sessionUser)
-console.log("getSpotowner",getspot.ownerId)
+// console.log("sessionuser",sessionUser)
+// console.log("getSpotowner",getspot.ownerId)
 useEffect(()=>{
     dispatch(getSelectedSpot(spotId))
+    dispatch(getSelectedReview(spotId))
+    console.log("show reviews pls",getSelectedReview(spotId))
 },[dispatch,spotId])
 return (
     <div className="Container">
@@ -38,6 +42,15 @@ return (
         <div>{getspot.numReviews}</div>
         <div>{getspot.price}</div>
         <div>{getspot.state}</div>
+        <div>{getReviews.Reviews?.[0]?.User.firstName}</div>
+        <div>{getReviews.Reviews?.[0]?.review}</div>
+        <div>{getReviews.Reviews?.[0]?.stars}</div>
+        <div>{getReviews.Reviews?.[1]?.User.firstName}</div>
+        <div>{getReviews.Reviews?.[1]?.review}</div>
+        <div>{getReviews.Reviews?.[1]?.stars}</div>
+        <div>{getReviews.Reviews?.[2]?.User.firstName}</div>
+        <div>{getReviews.Reviews?.[2]?.review}</div>
+        <div>{getReviews.Reviews?.[2]?.stars}</div>
        
         <NavLink to='/deleted'>
         <button disabled={!(sessionUser.id===getspot.ownerId)} onClick={()=>dispatch(deleteThisSpot(getspot.id))}
@@ -46,6 +59,10 @@ return (
         <NavLink to={`/spots/${getspot.id}/edit`}>
         <button disabled={!(sessionUser.id===getspot.ownerId)}
         >UPDATTE</button>
+        </NavLink>
+        <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
+        <button 
+        >LEAVE A REVIEW</button>
         </NavLink>
       
         </div>

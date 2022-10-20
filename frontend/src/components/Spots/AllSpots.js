@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 const ShowAllSpots = ()=> {
 const theSpots = useSelector(state => Object.values(state.spots.everySpot))
-console.log("pop",theSpots)
+// console.log("pop",theSpots)
 const dispatch = useDispatch()
 useEffect(()=>{
     dispatch(getAllSpots())
