@@ -13,7 +13,7 @@ console.log("getspot:",getspot)
 
 const getspotImages = getspot.SpotImages
 // console.log("getspotImages", getspotImages)
-const imageUrl = getspotImages.flat()
+const imageUrl = getspotImages
 // console.log("imageUrl=>",imageUrl)
 const sessionUser = useSelector((state) => state.session.user);
 console.log("sessionuser",sessionUser)
@@ -24,7 +24,11 @@ useEffect(()=>{
 return (
     <div className="Container">
          <div>{getspot.name}</div>
-        <img src={`${imageUrl?.url}`}/>  
+        <img src={`${imageUrl?.[0]?.url}`}/>  
+        <img src={`${imageUrl?.[1]?.url}`}/>  
+        <img src={`${imageUrl?.[2]?.url}`}/>
+        <img src={`${imageUrl?.[3]?.url}`}/>
+        <img src={`${imageUrl?.[4]?.url}`}/>
         <div>{getspot.avgRating}</div>
         <div>{getspot.url}</div>
         <div>{getspot.city}</div>
