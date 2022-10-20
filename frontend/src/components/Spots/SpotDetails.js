@@ -65,20 +65,54 @@ return (
         
         </div>: null}
         </div>
+        <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
         <NavLink to={`/spots/${getspot.id}/edit`}>
         <button disabled={!(sessionUser===getspot.ownerId)}
         >UPDATTE</button>
         </NavLink>
+        :null}
+        
+        </div>: null}
+        </div>
+
+
+
+
+
+
+
+        <div>{!!sessionUser?<div>{!(sessionUser.id===getspot.ownerId)?
         <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
         <button 
         >LEAVE A REVIEW</button>
         </NavLink>
+        :null}
+        
+        </div>: null}
+        </div>
         {/* <NavLink to={`/spots/${getspot.id}`}> */}
+        <div>{!!sessionUser?<div>{!(sessionUser.id===getspot.ownerId)?
         <NavLink to={`/`}>
         <button  onClick={()=>dispatch(deleteThisReview(getReviews.Reviews?.[0]?.id))}
         >DELEETE REV</button>
         </NavLink>
-      
+        :null}
+        
+        </div>: null}
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
         </div>
     
 )
