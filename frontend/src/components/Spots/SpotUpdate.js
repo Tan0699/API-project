@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { createSpotImage } from '../../store/SpotsReducer';
 const EditMySpot = ()=> {
+  const{spotId} =useParams()
 const thisSpot = useSelector(state => state.spots.oneSpot)
 const spotImage = useSelector(state => state.spots.oneSpot.spotImages)
 // // console.log("thisspot",thisSpot)
@@ -26,6 +27,20 @@ const [url,setUrl] = useState(spotImage)
 const [preview,setPreview] = useState(true)
 const history = useHistory();
 const dispatch= useDispatch();
+useEffect(()=>{
+  dispatch(getSelectedSpot(spotId))
+},[dispatch])
+useEffect(()=>{
+  setCity(thisSpot.city)
+  setAddress(thisSpot.address)
+  setState(thisSpot.state)
+  setCountry(thisSpot.country)
+  setLat(thisSpot.lat)
+  setLng(thisSpot.lng)
+  setName(thisSpot.name)
+  setPrice(thisSpot.price)
+  setDescription(thisSpot.description)
+},[thisSpot])
 useEffect(()=>{
   const errors = []
   // if(!address)errors.push("Street address is required")

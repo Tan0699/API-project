@@ -1,10 +1,10 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { getSelectedSpot } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteThisSpot } from '../../store/SpotsReducer';
-import { getSelectedReview } from '../../store/ReviewsReducer';
+import { deleteThisReview, getSelectedReview } from '../../store/ReviewsReducer';
 const ShowSpot = ()=> {
 const {spotId} = useParams()
 const dispatch = useDispatch()
@@ -52,7 +52,7 @@ return (
         <div>{getReviews.Reviews?.[2]?.review}</div>
         <div>{getReviews.Reviews?.[2]?.stars}</div>
        
-        <NavLink to='/deleted'>
+        <NavLink to='/'>
         <button disabled={!(sessionUser.id===getspot.ownerId)} onClick={()=>dispatch(deleteThisSpot(getspot.id))}
         >DELEETE</button>
         </NavLink>
@@ -63,6 +63,11 @@ return (
         <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
         <button 
         >LEAVE A REVIEW</button>
+        </NavLink>
+        {/* <NavLink to={`/spots/${getspot.id}`}> */}
+        <NavLink to={`/`}>
+        <button  onClick={()=>dispatch(deleteThisReview(getReviews.Reviews?.[0]?.id))}
+        >DELEETE REV</button>
         </NavLink>
       
         </div>

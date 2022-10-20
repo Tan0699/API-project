@@ -58,6 +58,7 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
       const list = await response.json();
       dispatch(selectedSpot(list));
+      return list
     }
   };
   export const newSpotCreate = data => async dispatch => {

@@ -4,6 +4,7 @@ const ONE_REVIEW = 'reviews/one'
 
 const CREATE_REVIEW = 'reviews/create'
 
+
 const getReview = (review) =>{
     return {
         type:ONE_REVIEW,
@@ -16,6 +17,7 @@ const newReview = (review) =>{
       review
   }
 }
+
 export const getSelectedReview = spotId => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
   
@@ -42,10 +44,18 @@ export const getSelectedReview = spotId => async dispatch => {
   };
 
 
-const initialState = {
-    everyReview: {},
-    oneReview:{}
-  };
+
+const DELETE_REVIEW = 'reviews/delete'
+
+const deleteReview = (reviewId) =>{return {type:DELETE_REVIEW,reviewId}}
+
+ export const deleteThisReview = (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`,{
+    method: 'DELETE',})
+    if (response.ok){
+      dispatch(deleteReview(reviewId));}};
+
+const initialState = {everyReview: {},oneReview:{}};
 const ReviewsReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
@@ -58,6 +68,11 @@ const ReviewsReducer = (state = initialState, action) => {
           newState = {...state,everyReview:{...state.everyReview}}
           // console.log("newState=>",newState)
           newState.oneReview=action.review
+          return newState
+          case DELETE_REVIEW: 
+          newState = {...state,everyReview:{...state.everyReview}}
+          // console.log("newState=>",newState)
+          delete newState.everyReview[action.reviewId]
           return newState
     default:
         return state;
