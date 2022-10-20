@@ -71,6 +71,7 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
       const list = await response.json();
       dispatch(createdSpot(list));
+      return list
     }
   };
   export const deleteThisSpot = (spotId) => async dispatch => {
@@ -92,10 +93,11 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
       const list = await response.json();
       dispatch(editASpot(list));
+      return list
     }
   }
   export const createSpotImage = (data,spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spotId}`,{
+    const response = await csrfFetch(`/api/spots/${spotId}/images`,{
     method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -105,6 +107,7 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
       const list = await response.json();
       dispatch(addSpotImage(list));
+      return list
     }
   };
   const initialState = {
@@ -156,8 +159,9 @@ export const getAllSpots = () => async dispatch => {
         ;
         return newState
         case SPOT_IMAGE: 
-          newState = {...state,oneSpot:{...state.oneSpot}}
-          newState.oneSpot[action.spotId] = action.spot
+          newState = {...state}
+          newState.oneSpot.SpotImage = action.spotId.url
+          console.log("newStateimage",newState)
         ;
         return newState
       default:

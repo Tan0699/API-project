@@ -5,7 +5,7 @@ import { editThisSpot, getAllSpots, newSpotCreate } from '../../store/SpotsReduc
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-
+import { createSpotImage } from '../../store/SpotsReducer';
 const EditMySpot = ()=> {
 const thisSpot = useSelector(state => state.spots.oneSpot)
 // console.log("thisspot",thisSpot)
@@ -19,6 +19,8 @@ const [name,setName] = useState(thisSpot.name)
 const [description,setDescription] = useState(thisSpot.description)
 const [price,setPrice] = useState(thisSpot.price)
 const [errorMessages, setErrorMessages] = useState([]);
+const [url,setUrl] = useState(thisSpot.url)
+const [preview,setPreview] = useState(true)
 const history = useHistory();
 const dispatch= useDispatch();
 
@@ -51,12 +53,16 @@ useEffect(()=>{
       price
     };
     
-  
+    const payloadImage = {
+      url,
+      preview:true
+    }
     //!!START SILENT
-    let spotupdated = dispatch(editThisSpot(payload,thisSpot.id));
+    let spotupdated = await dispatch(editThisSpot(payload,thisSpot.id));
     //!!END
     if (spotupdated) {
       //!!START SILENT
+      let imagecreated = await dispatch(createSpotImage(payloadImage,thisSpot.id))
       history.push('/');
     }
     console.log("errormshshhs",setErrorMessages)
@@ -152,6 +158,13 @@ useEffect(()=>{
             required
           />
         </label>
+        <input
+        placeholder="Spot Image"
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+        />
         <button disabled={!!errorMessages.length} className="createspot" type="submit">Host dis</button>
       </form>
       </>

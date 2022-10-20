@@ -13,7 +13,7 @@ console.log("getspot:",getspot)
 
 const getspotImages = getspot.SpotImages
 // console.log("getspotImages", getspotImages)
-const imageUrl = getspotImages
+const imageUrl = getspotImages.flat()
 // console.log("imageUrl=>",imageUrl)
 const sessionUser = useSelector((state) => state.session.user);
 console.log("sessionuser",sessionUser)
@@ -26,6 +26,7 @@ return (
          <div>{getspot.name}</div>
         <img src={`${imageUrl?.url}`}/>  
         <div>{getspot.avgRating}</div>
+        <div>{getspot.url}</div>
         <div>{getspot.city}</div>
         <div>{getspot.country}</div>
         <div>{getspot.address}</div>

@@ -56,22 +56,14 @@ useEffect(()=>{
     
   
     //!!START SILENT
-    let spotcreated = dispatch(newSpotCreate(payload));
-    //!!END
-    // console.log("spotcreated",spotcreated)
-      // console.log("spotcreated id",spotcreated.id)
-      // console.log("newSpotCreate(payload)",newSpotCreate(payload))
+    let spotcreated =await dispatch(newSpotCreate(payload));
     if (spotcreated) {
-      //!!START SILENT
-      // console.log("spotcreated",spotcreated)
-      // console.log("spotcreated id",spotcreated.id)
-      // console.log("newSpotCreate(payload)",newSpotCreate(payload))
-      // console.log("lamo",thisSpot)
-      let imagecreated = dispatch(createSpotImage(payloadImage,spotcreated.id))
-      
-      if(imagecreated){
+  console.log("kekw",spotcreated)
+      let imagecreated = await dispatch(createSpotImage(payloadImage,spotcreated.id))
+      console.log("kekweee",imagecreated)
+      // if(imagecreated){
         history.push('/')
-      }
+      // }
     }
     console.log("errormshshhs",setErrorMessages)
   }
