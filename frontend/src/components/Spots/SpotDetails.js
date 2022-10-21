@@ -131,7 +131,7 @@ return (
         {/* {!nodupeReview? */}
         {revValues?.map((review)=>(
             <div key={review.id}>
-               {(review.userId!==sessionUser?.id)&&(sessionUser?.id !==getspot?.ownerId && !nodupeReview.length)? 
+               {(review.userId!==sessionUser?.id)&&(sessionUser?.id !==getspot?.ownerId && (!nodupeReview.length)&&!!sessionUser)? 
                <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
                <button>LEAVE A REV</button>{console.log("pls",review.userId)}
                 </NavLink>
