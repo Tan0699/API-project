@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { createSpotImage } from '../../store/SpotsReducer';
 const EditMySpot = ()=> {
-  const{spotId} =useParams()
+const{spotId} =useParams()
 const thisSpot = useSelector(state => state.spots.oneSpot)
 const spotImage = useSelector(state => state.spots.oneSpot.spotImages)
 // // console.log("thisspot",thisSpot)
@@ -48,13 +48,32 @@ useEffect(()=>{
   // if(!country)errors.push("Country is required")
   // if(!city)errors.push("City is required")
   // if(!description)errors.push("Description is required")
+  // const number = ("1","2","3","4","5","6","7","8","9","0")
+  const num1= ("1")
+  const num2 = ("2")
+  const num3 = ("3")
+  const num4 = ("4")
+  const num5 = ("5")
+  const num6 = ("6")
+  const num7 = ("7")
+  const num8 = ("8")
+  const num9 = ("9")
+  const num0= ("0")
   if(!(price>=0))errors.push("Price per day is invalid")
+  if(!((lat>=0)||(lat<0)))errors.push("Latitude is not valid")
+  if(!((lng>=0)||(lng<0)))errors.push("Longitude is not valid")
+  if(!!((country?.includes(num1))||(country?.includes(num2))||
+  (country?.includes(num3))||(country?.includes(num4))||(country?.includes(num5))||
+  (country?.includes(num6))||(country?.includes(num7))||(country?.includes(num8))||
+  (country?.includes(num9))||(country?.includes(num0))))errors.push("country can not contain numbers")
+  // if(!(lng>=0))errors.push("Longitude is not valid")
   // if(!(lat>=0||lat<0))errors.push("Latitude is not valid")
   // if(isNaNlng)errors.push("Longitude is not valid")
   // if(!name)errors.push("Name is required")
+
   // if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
-},[price])
+},[price,lat,lng,country])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessages([])
@@ -93,11 +112,12 @@ useEffect(()=>{
         {errorMessages.map((error,idx) => (
           <div key={idx}>{error}</div>))}
           </div>
-        <div className="welcome">plsworkpepeASDFFHDSAJFIADJSJIADSFJIAFDSJIAFDSJI</div>
+        <div className="welcome">F</div>
           <label>
             <input
           placeholder="Name"
             type="text"
+            maxLength={50}
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -116,6 +136,7 @@ useEffect(()=>{
           <input
           placeholder="Address"
             type="text"
+            maxLength={255}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
@@ -125,6 +146,7 @@ useEffect(()=>{
           <input
           placeholder="Description"
             type="text"
+            maxLength={255}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
@@ -161,6 +183,7 @@ useEffect(()=>{
           <input
           placeholder="State"
             type="text"
+            maxLength={255}
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
@@ -170,6 +193,7 @@ useEffect(()=>{
           <input
           placeholder="Country"
             type="text"
+            maxLength={255}
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required

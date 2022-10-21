@@ -18,8 +18,9 @@ useEffect(()=>{
   const errors = []
   // if((!!((stars<1) ||(stars>5))))errors.push("Please rate between 1 and 5")
   // if(!(r>=0))errors.push("Price per day is invalid")
+  if(!!(stars!=1 && stars!=2 && stars!=3 && stars!=4 && stars!=5))errors.push("Please Enter an Integer from 1-5 ")
   setErrorMessages(errors)
-},[])
+},[stars])
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -67,6 +68,7 @@ useEffect(()=>{
           />
         </label>
         <label>
+         
           <input
           placeholder="Rate this"
             type="text"
