@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
-import '../SpotsCss/AllSpots.css';
+import './AllSpots.css';
 const ShowAllSpots = ()=> {
 const theSpots = useSelector(state => Object.values(state.spots.everySpot))
 // console.log("pop",theSpots)
