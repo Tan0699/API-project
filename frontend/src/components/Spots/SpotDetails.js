@@ -13,7 +13,7 @@ const dispatch = useDispatch()
 const getspot = useSelector(state => state.spots.oneSpot)
 const getReviews = useSelector(state => state.rev.oneReview.Reviews)
 const staterev = useSelector(state => state.rev)
-console.log("reviews",getReviews)
+// console.log("reviews",getReviews)
 // console.log("getspot:",getspot)
 const getspotImages = getspot.SpotImages
 
@@ -38,7 +38,7 @@ const revValues = getReviews
 // function loop() {
 //     for (let i = 0 ; i <getReviews.Reviews.length;i++){
 //         return {
-            console.log("send help2",revValues)
+            // console.log("send help2",revValues)
             // console.log("send help",sessionUser.id)
 //         }
 //     }
@@ -46,9 +46,9 @@ const revValues = getReviews
 const nodupeReview = revValues?.filter(review =>((
     review.userId===sessionUser?.id)))
 
-console.log("only1rev",nodupeReview)
+// console.log("only1rev",nodupeReview)
 if(!getReviews) return null
-console.log("rev",revValues)
+// console.log("rev",revValues)
 const helper = async (reviewId) =>{
     await dispatch(deleteThisReview(reviewId))
     setTimeout(
@@ -131,9 +131,11 @@ return (
         {/* {!nodupeReview? */}
         {revValues?.map((review)=>(
             <div key={review.id}>
-               {(review.userId!==sessionUser?.id)&&(sessionUser?.id !==getspot?.ownerId && (!nodupeReview.length)&&!!sessionUser)? 
+               {(review.userId!=sessionUser?.id)
+               &&(sessionUser?.id !==getspot?.ownerId 
+                && (!nodupeReview.length)&&!!sessionUser)? 
                <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
-               <button>LEAVE A REV</button>{console.log("pls",review.userId)}
+               <button>LEAVE A REV</button>{console.log("review Id",review.userId,typeof review.userId)}{console.log("sessionUser Id",sessionUser.Id,typeof review.userId)}
                 </NavLink>
                 :null}
             </div>

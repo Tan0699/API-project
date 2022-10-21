@@ -20,7 +20,7 @@ const [errorMessages, setErrorMessages] = useState([]);
 const history = useHistory();
 const dispatch= useDispatch();
 const thisSpot = useSelector(state => state.spots)
-
+const sessionUser = useSelector(state => state.session.user)
 
 
 useEffect(()=>{
@@ -31,6 +31,7 @@ useEffect(()=>{
   // if(!city)errors.push("City is required")
   // if(!description)errors.push("Description is required")
   const numbers = "123456789"
+  if(!sessionUser)errors.push("Must be logged in to Host a spot")
   if(!(price>=0))errors.push("Price per day is invalid")
   if(!((lat>=0)||(lat<0)))errors.push("Latitude is not valid")
   if(!((lng>=0)||(lng<0)))errors.push("Longitude is not valid")
@@ -79,11 +80,14 @@ useEffect(()=>{
     
       <>
     <form className="spotC" onSubmit={handleSubmit}>
+    {!!sessionUser?
     <div>
+      
       {errorMessages.map((error,idx) => (
         <div key={idx}>{error}</div>))}
-        </div>
-      <div className="welcome">plsworkpepeASDFFHDSAJFIADJSJIADSFJIAFDSJIAFDSJI</div>
+   
+        </div>   :<div>Please Login to host a Spot</div>}
+      <div className="welcome">     f    </div>
       <label>
         <input
         placeholder="Name"
