@@ -19,21 +19,21 @@ module.exports = {
     },
     {
       spotId:2,
-      url: "Irvine.com",
-      preview:false
+      url: "https://i.ibb.co/grw0SMB/istockphoto-146052140-170667a.jpg",
+      preview:true
     },{
       spotId:3,
-      url: "Grove.com",
+      url: "https://i.ibb.co/ysmCGhk/fb62bda433d08318849d3511b4833820d585698d-2-690x408.jpg",
       preview:true
     },
     {
       spotId:4,
-      url: "Los.com",
+      url: "https://i.ibb.co/r0DyjXx/2849499260-7facb3a6e9-b.jpg",
       preview:true
     },
     {
       spotId:5,
-      url: "Riverside.com",
+      url: "https://i.ibb.co/xXLw2Zk/maxresdefault.jpg",
       preview:true
     },
     {

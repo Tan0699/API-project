@@ -12,11 +12,16 @@ const {spotId} = useParams()
 const dispatch = useDispatch()
 const getspot = useSelector(state => state.spots.oneSpot)
 const getReviews = useSelector(state => state.rev.oneReview.Reviews)
+const staterev = useSelector(state => state.rev)
 console.log("reviews",getReviews)
 // console.log("getspot:",getspot)
 const getspotImages = getspot.SpotImages
+
 // console.log("getspotImages", getspotImages)
+
 const imageUrl = getspotImages
+
+
 // console.log("imageUrl=>",imageUrl)
 const sessionUser = useSelector((state) => state.session.user);
 // console.log("sessionuser",sessionUser)
@@ -33,19 +38,28 @@ const revValues = getReviews
 // function loop() {
 //     for (let i = 0 ; i <getReviews.Reviews.length;i++){
 //         return {
-            
+            console.log("send help2",revValues)
+            // console.log("send help",sessionUser.id)
 //         }
 //     }
 // }
-if(!getReviews) return null
+const nodupeReview = revValues?.filter(review =>((
+    review.userId===sessionUser?.id)))
 
+console.log("only1rev",nodupeReview)
+if(!getReviews) return null
+console.log("rev",revValues)
 const helper = async (reviewId) =>{
     await dispatch(deleteThisReview(reviewId))
     setTimeout(
     () =>{
         dispatch(getSelectedReview(spotId))
+        dispatch(getSelectedSpot(spotId))
     },1)
+
+
 }
+
 return (
     <div className="Container">
          <div>{getspot.name}</div>
@@ -77,12 +91,12 @@ return (
         <div>{getReviews.Reviews?.[2]?.review}</div>
         <div>{getReviews.Reviews?.[2]?.stars}</div> */}
        {/* {revValues.forEach((revi) =>{
-          
+          //{review.id}
        })} */}
        <ul>
         {revValues?.map((review)=>(
             <li key={review.id}>
-                {review.review}{review.stars}{review.id}{review.userId===sessionUser.id? <button  onClick={()=>(helper(review.id))}
+                {review.review}{review.stars}{review.id}{review.User.firstName}{review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
         >DELEETE REV</button>:null}
             </li>
         ))}
@@ -93,7 +107,7 @@ return (
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
         
         <NavLink to='/'>
-        <button  onClick={()=>dispatch(deleteThisSpot(getspot.id))}
+        <button  onClick={()=>dispatch(deleteThisSpot(getspot.id),dispatch(getSelectedSpot(getspot.id)))}
         >DELEETE SPOT</button>
         </NavLink>
         :null}
@@ -112,18 +126,30 @@ return (
 
         
         
+        {/* {revValues.filter(())} */}
+        {/* &&!nodupeReview */}
+        {/* {!nodupeReview? */}
+        {revValues?.map((review)=>(
+            <div key={review.id}>
+               {(review.userId!==sessionUser?.id)&&(sessionUser?.id !==getspot?.ownerId && !nodupeReview.length)? 
+               <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
+               <button>LEAVE A REV</button>{console.log("pls",review.userId)}
+                </NavLink>
+                :null}
+            </div>
+        ))}
+               
 
-
-
-
-        <div>{!!sessionUser?<div>{!(sessionUser.id===getspot.ownerId)?
+                    {/* the review.userId  */}
+              
+        {/* <div>{(!!sessionUser)?<div>{!(sessionUser.id===getspot.ownerId)?
         <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
         <button 
         >LEAVE A REVIEW</button>
         </NavLink>
-        :null}
+        :null} */}
         
-        </div>: null}
+        {/* </div>: null */}
         {/* </div> */}
         {/* <NavLink to={`/spots/${getspot.id}`}> */}
         {/* // <div>{!!sessionUser?<div>{!(sessionUser.id===getspot.ownerId)? */}
@@ -140,7 +166,7 @@ return (
 
 
         
-        </div>
+        {/* </div> */}
         </div>
     
 )

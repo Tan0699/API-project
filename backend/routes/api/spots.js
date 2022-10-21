@@ -117,7 +117,6 @@ let {size,page} = req.query
       })
     }
     newSpot.Spot = spotFound
-   
         const owner = await User.findOne({
             where:{id:newSpot.Spot.ownerId},
             attributes:['id','firstName','lastName']
