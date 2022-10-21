@@ -229,12 +229,13 @@ let {size,page} = req.query
   router.get('/:spotId/reviews', async (req, res) => {
     const {spotId} = req.params
     const newSpot = {}
+    const spot = await Spot.findByPk(spotId)
     const allReviews = await Review.findAll({
         raw:true,
         where:{spotId:spotId}
     })
     console.log(allReviews)
-    if(!allReviews.length){
+    if(!spot){
         res.status(404)
         return res.json({
           "message": "Spot couldn't be found",

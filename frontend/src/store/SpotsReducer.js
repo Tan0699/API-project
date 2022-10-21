@@ -128,7 +128,7 @@ export const getAllSpots = () => async dispatch => {
         return newState
           ;
           case SPOT_DETAILS: 
-          newState = {...state,everySpot:{...state.everySpot}}
+          newState = {...state,everySpot:{...state.everySpot},oneSpot:{}}
           // console.log("newState=>",newState)
           newState.oneSpot=action.spot
         ;

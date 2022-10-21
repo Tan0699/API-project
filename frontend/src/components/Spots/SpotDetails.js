@@ -7,15 +7,13 @@ import { deleteThisSpot } from '../../store/SpotsReducer';
 import { deleteThisReview, getSelectedReview } from '../../store/ReviewsReducer';
 import '../SpotsCss/SpotDetails.css';
 
-
 const ShowSpot = ()=> {
 const {spotId} = useParams()
 const dispatch = useDispatch()
 const getspot = useSelector(state => state.spots.oneSpot)
-const getReviews = useSelector(state => state.rev.oneReview)
+const getReviews = useSelector(state => state.rev.oneReview.Reviews)
 console.log("reviews",getReviews)
 // console.log("getspot:",getspot)
-
 const getspotImages = getspot.SpotImages
 // console.log("getspotImages", getspotImages)
 const imageUrl = getspotImages
@@ -23,20 +21,40 @@ const imageUrl = getspotImages
 const sessionUser = useSelector((state) => state.session.user);
 // console.log("sessionuser",sessionUser)
 // console.log("getSpotowner",getspot.ownerId)
-useEffect(()=>{
-    dispatch(getSelectedSpot(spotId))
-    dispatch(getSelectedReview(spotId))
-    console.log("show reviews pls",getSelectedReview(spotId))
+
+useEffect( ()=>{
+   dispatch(getSelectedSpot(spotId))
+   dispatch(getSelectedReview(spotId))
+    // console.log("show reviews pls",getSelectedReview(spotId))
+    // console.log("show spotId",spotId)
 },[dispatch,spotId])
+const revValues = getReviews
+// console.log("values",revValues)
+// function loop() {
+//     for (let i = 0 ; i <getReviews.Reviews.length;i++){
+//         return {
+            
+//         }
+//     }
+// }
+if(!getReviews) return null
+
+const helper = async (reviewId) =>{
+    await dispatch(deleteThisReview(reviewId))
+    setTimeout(
+    () =>{
+        dispatch(getSelectedReview(spotId))
+    },1)
+}
 return (
     <div className="Container">
          <div>{getspot.name}</div>
          <div className="pics">
         <img src={`${imageUrl?.[0]?.url}`}/>  
-        <img src={`${imageUrl?.[1]?.url}`}/>  
+        {/* <img src={`${imageUrl?.[1]?.url}`}/>  
         <img src={`${imageUrl?.[2]?.url}`}/>
         <img src={`${imageUrl?.[3]?.url}`}/>
-        <img src={`${imageUrl?.[4]?.url}`}/>
+        <img src={`${imageUrl?.[4]?.url}`}/> */}
         </div>
         <div>{getspot.avgRating}</div>
         <div>{getspot.url}</div>
@@ -47,7 +65,9 @@ return (
         <div>{getspot.numReviews}</div>
         <div>{getspot.price}</div>
         <div>{getspot.state}</div>
-        <div>{getReviews.Reviews?.[0]?.User.firstName}</div>
+        <div>
+        {/* {!!(getReviews.Reviews)?<div> */}
+        {/* <div>{getReviews.Reviews?.[0]?.User.firstName}</div>
         <div>{getReviews.Reviews?.[0]?.review}</div>
         <div>{getReviews.Reviews?.[0]?.stars}</div>
         <div>{getReviews.Reviews?.[1]?.User.firstName}</div>
@@ -55,11 +75,26 @@ return (
         <div>{getReviews.Reviews?.[1]?.stars}</div>
         <div>{getReviews.Reviews?.[2]?.User.firstName}</div>
         <div>{getReviews.Reviews?.[2]?.review}</div>
-        <div>{getReviews.Reviews?.[2]?.stars}</div>
+        <div>{getReviews.Reviews?.[2]?.stars}</div> */}
+       {/* {revValues.forEach((revi) =>{
+          
+       })} */}
+       <ul>
+        {revValues?.map((review)=>(
+            <li key={review.id}>
+                {review.review}{review.stars}{review.id}{review.userId===sessionUser.id? <button  onClick={()=>(helper(review.id))}
+        >DELEETE REV</button>:null}
+            </li>
+        ))}
+       </ul>
+        {/* </div>:null} */}
+        </div>
+        
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
+        
         <NavLink to='/'>
         <button  onClick={()=>dispatch(deleteThisSpot(getspot.id))}
-        >DELEETE</button>
+        >DELEETE SPOT</button>
         </NavLink>
         :null}
         
@@ -67,7 +102,7 @@ return (
         </div>
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
         <NavLink to={`/spots/${getspot.id}/edit`}>
-        <button disabled={!(sessionUser===getspot.ownerId)}
+        <button 
         >UPDATTE</button>
         </NavLink>
         :null}
@@ -75,8 +110,8 @@ return (
         </div>: null}
         </div>
 
-
-
+        
+        
 
 
 
@@ -89,23 +124,16 @@ return (
         :null}
         
         </div>: null}
-        </div>
+        {/* </div> */}
         {/* <NavLink to={`/spots/${getspot.id}`}> */}
-        <div>{!!sessionUser?<div>{!(sessionUser.id===getspot.ownerId)?
-        <NavLink to={`/`}>
-        <button  onClick={()=>dispatch(deleteThisReview(getReviews.Reviews?.[0]?.id))}
-        >DELEETE REV</button>
-        </NavLink>
-        :null}
+        {/* // <div>{!!sessionUser?<div>{!(sessionUser.id===getspot.ownerId)? */}
+        {/* // <NavLink to={`/`}> */}
+        {/* // <button  onClick={()=>dispatch(deleteThisReview(getReviews?.[0]?.id))} */}
+        {/* // >DELEETE REV</button> */}
+        {/* // </NavLink> */}
+        {/* // :null} */}
         
-        </div>: null}
-
-
-
-
-
-
-
+        {/* // </div>:null} */}
 
 
 

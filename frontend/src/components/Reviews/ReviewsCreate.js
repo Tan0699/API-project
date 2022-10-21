@@ -6,6 +6,12 @@ import { useHistory } from 'react-router-dom';
 import { createReview } from '../../store/ReviewsReducer';
 import { useParams } from 'react-router-dom';
 const ReviewsCreateForm = ()=> {
+
+
+  //review.length must not be greater than 255
+
+
+
     const [review,setReview] = useState("")
     const [stars,setstars] = useState()
     const history = useHistory();

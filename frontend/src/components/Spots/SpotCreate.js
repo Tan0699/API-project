@@ -21,6 +21,8 @@ const history = useHistory();
 const dispatch= useDispatch();
 const thisSpot = useSelector(state => state.spots)
 
+
+
 useEffect(()=>{
   const errors = []
   // if(!address)errors.push("Street address is required")
@@ -28,13 +30,19 @@ useEffect(()=>{
   // if(!country)errors.push("Country is required")
   // if(!city)errors.push("City is required")
   // if(!description)errors.push("Description is required")
+  const numbers = "123456789"
   if(!(price>=0))errors.push("Price per day is invalid")
+  if(!((lat>=0)||(lat<0)))errors.push("Latitude is not valid")
+  if(!((lng>=0)||(lng<0)))errors.push("Longitude is not valid")
+  if((country.includes(numbers)))errors.push("country is not valid")
+  // if(!(lng>=0))errors.push("Longitude is not valid")
   // if(!(lat>=0||lat<0))errors.push("Latitude is not valid")
   // if(isNaNlng)errors.push("Longitude is not valid")
   // if(!name)errors.push("Name is required")
-  if(name.length>50)errors.push("Name must be less than 50 characters")
+  if(!(url.endsWith(".jpg")))errors.push("Url needs to end with .jpg")
+  // if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
-},[name,price])
+},[price,lat,lng,url,country])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessages([])
@@ -79,6 +87,7 @@ useEffect(()=>{
       <label>
         <input
         placeholder="Name"
+          maxLength={50}
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -106,6 +115,7 @@ useEffect(()=>{
       <label>
         <input
         placeholder="Description"
+          maxLength={256}
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -143,6 +153,7 @@ useEffect(()=>{
         <input
         placeholder="State"
           type="text"
+          is
           value={state}
           onChange={(e) => setState(e.target.value)}
           required
