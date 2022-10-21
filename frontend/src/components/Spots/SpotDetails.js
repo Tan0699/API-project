@@ -1,6 +1,6 @@
 import { Link, NavLink, Redirect } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { getSelectedSpot } from '../../store/SpotsReducer';
+import { getAllSpots, getSelectedSpot } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteThisSpot } from '../../store/SpotsReducer';
@@ -57,6 +57,17 @@ const helper = async (reviewId) =>{
         dispatch(getSelectedSpot(spotId))
     },1)
 
+    // dispatch(deleteThisSpot(getspot.id)
+    
+}
+const helper2 = async () =>{
+    await dispatch(deleteThisSpot(getspot.id))
+    setTimeout(
+    () =>{
+        dispatch(getAllSpots())
+        dispatch(getSelectedSpot(getspot.id))
+    },1)
+
 
 }
 
@@ -107,7 +118,7 @@ return (
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
         
         <NavLink to='/'>
-        <button  onClick={()=>dispatch(deleteThisSpot(getspot.id),dispatch(getSelectedSpot(getspot.id)))}
+        <button  onClick={()=>(helper2())}
         >DELEETE SPOT</button>
         </NavLink>
         :null}
