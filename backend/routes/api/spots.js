@@ -117,7 +117,6 @@ let {size,page} = req.query
       })
     }
     newSpot.Spot = spotFound
-   
         const owner = await User.findOne({
             where:{id:newSpot.Spot.ownerId},
             attributes:['id','firstName','lastName']
@@ -229,12 +228,13 @@ let {size,page} = req.query
   router.get('/:spotId/reviews', async (req, res) => {
     const {spotId} = req.params
     const newSpot = {}
+    const spot = await Spot.findByPk(spotId)
     const allReviews = await Review.findAll({
         raw:true,
         where:{spotId:spotId}
     })
     console.log(allReviews)
-    if(!allReviews.length){
+    if(!spot){
         res.status(404)
         return res.json({
           "message": "Spot couldn't be found",

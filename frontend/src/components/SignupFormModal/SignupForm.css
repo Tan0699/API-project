@@ -1,0 +1,25 @@
+.signup {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 10px;
+    border-radius:20px ;
+    
+  }
+
+  .signupButton {
+    background-color: rgb(197, 5, 69);
+    border: 0px;
+    height:20px;
+    color: white;
+    border-radius: 3px;
+    font-size: 9px;
+  }
+
+  .welcome{
+    margin-top: 10px;
+    margin-left: 8px;
+    margin-bottom: -20px;
+    color:black;
+    font-weight:bold; 
+  }

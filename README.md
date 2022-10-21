@@ -1,4 +1,4 @@
-# Fnf
+# FnF
 
 ## Database Schema Design
 
