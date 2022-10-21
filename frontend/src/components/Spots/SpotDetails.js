@@ -70,13 +70,13 @@ return (
         <img src={`${imageUrl?.[3]?.url}`}/>
         <img src={`${imageUrl?.[4]?.url}`}/> */}
         </div>
-        <div>{getspot.avgRating}★</div>
+        <div>{getspot.avgRating}★ From </div>
+        <div>{getspot.numReviews} Reviews</div>
         <div>{getspot.url}</div>
         <div>{getspot.city}</div>
         <div>{getspot.country}</div>
         <div>{getspot.address}</div>
         <div>{getspot.description}</div>
-        <div>{getspot.numReviews} Reviews</div>
         <div>${getspot.price} Per Night</div>
         <div>{getspot.state}</div>
         <div>

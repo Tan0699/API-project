@@ -62,18 +62,18 @@ useEffect(()=>{
   if(!(price>=0))errors.push("Price per day is invalid")
   if(!((lat>=0)||(lat<0)))errors.push("Latitude is not valid")
   if(!((lng>=0)||(lng<0)))errors.push("Longitude is not valid")
-  if(!!((country.includes(num1))||(country.includes(num2))||
-  (country.includes(num3))||(country.includes(num4))||(country.includes(num5))||
-  (country.includes(num6))||(country.includes(num7))||(country.includes(num8))||
-  (country.includes(num9))||(country.includes(num0))))errors.push("country is not valid")
+  if(!!((country?.includes(num1))||(country?.includes(num2))||
+  (country?.includes(num3))||(country?.includes(num4))||(country?.includes(num5))||
+  (country?.includes(num6))||(country?.includes(num7))||(country?.includes(num8))||
+  (country?.includes(num9))||(country?.includes(num0))))errors.push("country can not contain numbers")
   // if(!(lng>=0))errors.push("Longitude is not valid")
   // if(!(lat>=0||lat<0))errors.push("Latitude is not valid")
   // if(isNaNlng)errors.push("Longitude is not valid")
   // if(!name)errors.push("Name is required")
-  if(!(url.endsWith(".jpg")))errors.push("Url needs to end with .jpg")
+
   // if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
-},[price,lat,lng,url,country])
+},[price,lat,lng,country])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessages([])
