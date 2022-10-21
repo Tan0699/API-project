@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteThisSpot } from '../../store/SpotsReducer';
 import { deleteThisReview, getSelectedReview } from '../../store/ReviewsReducer';
-import '../SpotsCss/SpotDetails.css';
+import './SpotDetails.css';
 
 const ShowSpot = ()=> {
 const {spotId} = useParams()
