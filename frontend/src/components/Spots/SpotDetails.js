@@ -70,14 +70,14 @@ return (
         <img src={`${imageUrl?.[3]?.url}`}/>
         <img src={`${imageUrl?.[4]?.url}`}/> */}
         </div>
-        <div>{getspot.avgRating}</div>
+        <div>{getspot.avgRating}★</div>
         <div>{getspot.url}</div>
         <div>{getspot.city}</div>
         <div>{getspot.country}</div>
         <div>{getspot.address}</div>
         <div>{getspot.description}</div>
-        <div>{getspot.numReviews}</div>
-        <div>{getspot.price}</div>
+        <div>{getspot.numReviews} Reviews</div>
+        <div>${getspot.price} Per Night</div>
         <div>{getspot.state}</div>
         <div>
         {/* {!!(getReviews.Reviews)?<div> */}
@@ -96,7 +96,7 @@ return (
        <ul>
         {revValues?.map((review)=>(
             <li key={review.id}>
-                {review.review}{review.stars}{review.id}{review.User.firstName}{review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
+              {review.User.firstName}  {review.stars}★ {review.review}  {review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
         >DELEETE REV</button>:null}
             </li>
         ))}
