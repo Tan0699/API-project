@@ -22,7 +22,10 @@ const dispatch= useDispatch();
 const thisSpot = useSelector(state => state.spots)
 const sessionUser = useSelector(state => state.session.user)
 
-
+useEffect(()=>{
+  dispatch(getAllSpots())
+  
+},dispatch)
 useEffect(()=>{
   const errors = []
   // if(!address)errors.push("Street address is required")
@@ -83,16 +86,21 @@ console.log("country", typeof country)
     let spotcreated =await dispatch(newSpotCreate(payload));
     if (spotcreated) {
   console.log("kekw",spotcreated)
-      let imagecreated = await dispatch(createSpotImage(payloadImage,spotcreated.id))
+    await dispatch(createSpotImage(payloadImage,spotcreated.id))
       
-      if(imagecreated){
-        dispatch(getAllSpots())
+      // if(imagecreated){
+      //   dispatch(getAllSpots())
         history.push('/')
       // }
-    }
+    // }
     // console.log("errormshshhs",setErrorMessages)
   }
+  
 }
+
+
+//  history.push("/")
+
   return (
     
       <>
