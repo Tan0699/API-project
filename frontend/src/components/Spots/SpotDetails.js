@@ -155,7 +155,7 @@ return (
             </div>
         ))} */}
                <div>
-                {(!nodupeReview.length)&&(sessionUser?.id !==getspot?.ownerId )? <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
+                {!!sessionUser&&(!nodupeReview.length)&&(sessionUser?.id !==getspot?.ownerId )? <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
                <button>LEAVE A REV</button>
                 </NavLink> :null}
                </div>
