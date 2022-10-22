@@ -84,13 +84,15 @@ console.log("country", typeof country)
     if (spotcreated) {
   console.log("kekw",spotcreated)
       let imagecreated = await dispatch(createSpotImage(payloadImage,spotcreated.id))
-      console.log("kekweee",imagecreated)
-      // if(imagecreated){
+      
+      if(imagecreated){
+        dispatch(getAllSpots())
         history.push('/')
       // }
     }
-    console.log("errormshshhs",setErrorMessages)
+    // console.log("errormshshhs",setErrorMessages)
   }
+}
   return (
     
       <>
