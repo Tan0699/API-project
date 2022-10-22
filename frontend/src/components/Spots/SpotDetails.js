@@ -68,7 +68,7 @@ const helper2 = async () =>{
     () =>{
         
         
-        // dispatch(getSelectedSpot(getspot.id))
+        dispatch(getSelectedSpot(getspot.id))
         dispatch(getAllSpots())
     },100)
 
