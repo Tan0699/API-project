@@ -13,14 +13,21 @@ useEffect(()=>{
 
 return (
     <div className="Container">
-        <div>lmao</div>
             <div className="alltheSpots">
                 {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
-                    <NavLink to={`/spots/${spot.id}`}>{spot.name}
+                    <NavLink to={`/spots/${spot.id}`}>
+                    <div className="pictureWrap">
                     <img id="picture" src={`${spot.previewImage}`}/>
-                    <div>$price {spot.price} night</div>
-                    <div>{spot.avgRating}★</div>
+                    <div className="picturetext">
+                    <div>{spot.city},{spot.state}</div>
+                    <div className='rating'> ★{spot.avgRating}</div>    
+                    </div>
+                    <div className='nightwrap'>
+                    <div className='price'>${spot.price} </div>
+                    <div className='night'>night</div>
+                    </div>
+                    </div>
                     </NavLink>
                 </div>
                 ))}
