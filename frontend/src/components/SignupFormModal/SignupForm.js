@@ -7,6 +7,7 @@ import * as sessionActions from "../../store/session";
 // ...
 import './SignupForm.css';
 // ...
+
 function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,6 +23,8 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password,lastName,firstName }))
@@ -30,7 +33,9 @@ function SignupFormPage() {
           if (data && data.errors) setErrors(data.errors);
         });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors(['Confirm Password field must be the same as the Password field'])
+     ;
+    
   };
 
   return (
@@ -43,6 +48,7 @@ function SignupFormPage() {
         <input
         placeholder="Email"
           type="text"
+          maxLength={256}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -52,6 +58,8 @@ function SignupFormPage() {
         <input
         placeholder="Username"
           type="text"
+          minLength={4}
+          maxLength={30}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -62,6 +70,8 @@ function SignupFormPage() {
         placeholder="Password"
           type="password"
           value={password}
+          maxLength={255}
+          minLength={6}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -70,6 +80,8 @@ function SignupFormPage() {
         <input
         placeholder="Confirm Password"
           type="password"
+          maxLength={255}
+          minLength={6}
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
@@ -79,6 +91,7 @@ function SignupFormPage() {
         <input
         placeholder="Last Name"
           type="text"
+          maxLength={30}
           value={lastName}
           onChange={(e) => setlastName(e.target.value)}
           required
@@ -88,6 +101,7 @@ function SignupFormPage() {
         <input
         placeholder="First Name"
           type="text"
+          maxLength={30}
           value={firstName}
           onChange={(e) => setfirstName(e.target.value)}
           required
