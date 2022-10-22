@@ -149,7 +149,7 @@ export const getAllSpots = () => async dispatch => {
           ;
           case DELETE_SPOT: 
           newState = {...state,everySpot:{...state.everySpot}}
-          // console.log("newState=>",newState)
+          
           delete newState.everySpot[action.spotId]
         ;
         return newState
