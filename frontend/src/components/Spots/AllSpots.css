@@ -3,7 +3,7 @@
  height: 150px;
  border-radius: 6px;
  margin-left: 0;
- 
+ /* text-decoration: none; */
 }
 
 .alltheSpots{
@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
     padding:15px 0px 10px 10px;
+    /* text-decoration: none; */
 }
 
 .picturetext{
@@ -22,10 +23,37 @@
     flex-direction: row;
     font-size: 10px;
     float: left;
+    justify-content: space-between;
+    font-weight: bold;
+    color: black;
     /* flex-wrap: wrap; */
 }
 .rating{
    /* padding: 0px 20px; */
-float: right; 
+/* float: right;  */
  /* margin-right: 0%; */
+ display: flex;
+justify-content: flex-end;
+
+}
+.price{
+    font-size: 10px;
+    font-weight: bold;
+    float: right;
+    color: black;
+}
+.nightwrap{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+.yo{
+    float: right;
+    margin-top: -20px;
+}
+.night{
+    font-size: 10px;
+    float: right;
+    color: black;
+    padding-left: 3px;
 }

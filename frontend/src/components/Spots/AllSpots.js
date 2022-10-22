@@ -20,11 +20,13 @@ return (
                     <div className="pictureWrap">
                     <img id="picture" src={`${spot.previewImage}`}/>
                     <div className="picturetext">
-                    <div>{spot.city}</div>
-                    <div>{spot.state}</div>
-                    <div className='rating'> ★{spot.avgRating}</div>
+                    <div>{spot.city},{spot.state}</div>
+                    <div className='rating'> ★{spot.avgRating}</div>    
                     </div>
-                    <div className='price'>$price {spot.price} night</div>
+                    <div className='nightwrap'>
+                    <div className='price'>${spot.price} </div>
+                    <div className='night'>night</div>
+                    </div>
                     </div>
                     </NavLink>
                 </div>
