@@ -148,7 +148,7 @@ export const getAllSpots = () => async dispatch => {
         return newState
           ;
           case DELETE_SPOT: 
-          newState = {...state,everySpot:{...state.everySpot}}
+          newState = {...state,oneSpot:{}}
           
           delete newState.everySpot[action.spotId]
         ;
@@ -168,6 +168,7 @@ export const getAllSpots = () => async dispatch => {
         case SPOT_IMAGE: 
           newState = {...state}
           newState.oneSpot.SpotImage = action.spotId.url
+          // newState.everySpot.SpotImage = action.spotId.url
           console.log("newStateimage",newState)
         ;
         return newState
