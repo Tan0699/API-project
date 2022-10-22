@@ -21,7 +21,7 @@ return (
                     <img id="picture" src={`${spot.previewImage}`}/>
                     <div className="picturetext">
                     <div>{spot.city},{spot.state}</div>
-                    <div className='rating'> ★{spot.avgRating}</div>    
+                    <div className='rating'> ★ {spot.avgRating}</div>    
                     </div>
                     <div className='nightwrap'>
                     <div className='price'>${spot.price} </div>
