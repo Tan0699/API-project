@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { getAllSpots } from '../../store/SpotsReducer';
+import SpotsReducer, { getAllSpots } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
 import './AllSpots.css';
 const ShowAllSpots = ()=> {
@@ -17,8 +17,10 @@ return (
                 {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
                     <NavLink to={`/spots/${spot.id}`}>
+                    {spot.previewImage===undefined?null:
                     <div className="pictureWrap">
-                    <img id="picture" src={`${spot.previewImage}`}/>
+                       
+                    <img id="picture" src={`${spot?.previewImage}`}/>
                     <div className="picturetext">
                     <div>{spot.city},{spot.state}</div>
                     <div className='rating'> ★ {spot.avgRating}</div>    
@@ -26,8 +28,11 @@ return (
                     <div className='nightwrap'>
                     <div className='price'>${spot.price} </div>
                     <div className='night'>night</div>
+                    
                     </div>
+                    
                     </div>
+}
                     </NavLink>
                 </div>
                 ))}

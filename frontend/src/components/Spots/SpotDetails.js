@@ -71,9 +71,9 @@ const helper2 = async () =>{
         
         
         // dispatch(getSelectedSpot(getspot.id))
-        // dispatch(getAllSpots())
-         history.push('/')
-    },1)
+        dispatch(getAllSpots())
+        //  history.push('/')
+    },1000)
 
 
 }

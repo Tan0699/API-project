@@ -27,10 +27,13 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li>
+      <div className='home'></div>
         <NavLink exact to="/spotCreate">
         <button>Become a Host</button>
+        
         </NavLink>
         <NavLink exact to="/">Home</NavLink>
+       <div/>
         {isLoaded && sessionLinks}
       </li>
     </ul>
