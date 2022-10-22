@@ -66,9 +66,11 @@ const helper2 = async () =>{
     await dispatch(deleteThisSpot(getspot.id))
     setTimeout(
     () =>{
+        
+        
+        // dispatch(getSelectedSpot(getspot.id))
         dispatch(getAllSpots())
-        dispatch(getSelectedSpot(getspot.id))
-    },1)
+    },100)
 
 
 }

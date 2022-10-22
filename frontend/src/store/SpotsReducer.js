@@ -49,7 +49,8 @@ export const getAllSpots = () => async dispatch => {
   
     if (response.ok) {
       const list = await response.json();
-      dispatch(allSpots(list));
+      dispatch(allSpots(list))
+      return list
     }
   };
   export const getSelectedSpot = spotId => async dispatch => {
@@ -80,7 +81,10 @@ export const getAllSpots = () => async dispatch => {
     method: 'DELETE',
     })
     if (response.ok) {
+      const data = await response.json()
       dispatch(deletedspot(spotId));
+      return data
+
     }
   }
   export const editThisSpot = (data,spotId) => async dispatch => {
@@ -153,10 +157,10 @@ export const getAllSpots = () => async dispatch => {
           case EDIT_SPOT: 
           // console.log("normal state",state)
           // newState = {...state}
-          console.log("state testing",state)
+          // console.log("state testing",state)
           newState = {...state,oneSpot:{...state.oneSpot}}
           // console.log("newState=>",newState)
-          console.log("newStatetet",newState)
+          // console.log("newStatetet",newState)
           newState.oneSpot[action.spotId] = action.spot
           // console.log("newState22 =>>",newState)
         ;

@@ -53,7 +53,7 @@ useEffect(()=>{
   // if(!(lat>=0||lat<0))errors.push("Latitude is not valid")
   // if(isNaNlng)errors.push("Longitude is not valid")
   // if(!name)errors.push("Name is required")
-  if(!(url.endsWith(".jpg")))errors.push("Url needs to end with .jpg")
+  // if(!(url.endsWith(".jpg")))errors.push("Url needs to end with .jpg")
   // if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
 },[price,lat,lng,url,country])

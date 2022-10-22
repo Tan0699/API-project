@@ -6,6 +6,7 @@ import { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { createSpotImage } from '../../store/SpotsReducer';
+
 const EditMySpot = ()=> {
 const{spotId} =useParams()
 const thisSpot = useSelector(state => state.spots.oneSpot)
@@ -59,7 +60,7 @@ useEffect(()=>{
   const num8 = ("8")
   const num9 = ("9")
   const num0= ("0")
-  if(!(price>=0))errors.push("Price per day is invalid")
+  if(!(price>0))errors.push("Price per day is invalid")
   if(!((lat>=0)||(lat<0)))errors.push("Latitude is not valid")
   if(!((lng>=0)||(lng<0)))errors.push("Longitude is not valid")
   if(!!((country?.includes(num1))||(country?.includes(num2))||
@@ -89,16 +90,18 @@ useEffect(()=>{
       price
     };
     
-    const payloadImage = {
-      url,
-      preview:true
-    }
+    // const payloadImage = {
+    //   url,
+    //   preview:true
+    // }
     //!!START SILENT
     let spotupdated = await dispatch(editThisSpot(payload,thisSpot.id));
     //!!END
     if (spotupdated) {
       //!!START SILENT
-      let imagecreated = await dispatch(createSpotImage(payloadImage,thisSpot.id))
+      // let imagecreated = await dispatch(createSpotImage(payloadImage,thisSpot.id))
+       dispatch(getSelectedSpot(spotId))
+       dispatch(getAllSpots())
       history.push('/');
     }
     console.log("errormshshhs",setErrorMessages)
