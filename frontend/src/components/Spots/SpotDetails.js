@@ -4,12 +4,14 @@ import { getAllSpots, getSelectedSpot } from '../../store/SpotsReducer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteThisSpot } from '../../store/SpotsReducer';
+import { useHistory } from 'react-router-dom';
 import { deleteThisReview, getSelectedReview } from '../../store/ReviewsReducer';
 import './SpotDetails.css';
 
 const ShowSpot = ()=> {
 const {spotId} = useParams()
 const dispatch = useDispatch()
+const history= useHistory()
 const getspot = useSelector(state => state.spots.oneSpot)
 const getReviews = useSelector(state => state.rev.oneReview.Reviews)
 const staterev = useSelector(state => state.rev)
@@ -69,8 +71,9 @@ const helper2 = async () =>{
         
         
         // dispatch(getSelectedSpot(getspot.id))
-        dispatch(getAllSpots())
-    },2000)
+        // dispatch(getAllSpots())
+         history.push('/')
+    },1)
 
 
 }
