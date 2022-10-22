@@ -1,11 +1,31 @@
 #picture {
- width: 140px;
- height: 170px;
- border-radius: 15px;
+ width: 150px;
+ height: 150px;
+ border-radius: 6px;
+ margin-left: 0;
+ 
 }
 
 .alltheSpots{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+.pictureWrap{
+    display: flex;
+    flex-direction: column;
+    padding:15px 0px 10px 10px;
+}
+
+.picturetext{
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+    float: left;
+    /* flex-wrap: wrap; */
+}
+.rating{
+   /* padding: 0px 20px; */
+float: right; 
+ /* margin-right: 0%; */
 }

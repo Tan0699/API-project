@@ -16,10 +16,16 @@ return (
             <div className="alltheSpots">
                 {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
-                    <NavLink to={`/spots/${spot.id}`}>{spot.name}
+                    <NavLink to={`/spots/${spot.id}`}>
+                    <div className="pictureWrap">
                     <img id="picture" src={`${spot.previewImage}`}/>
-                    <div>$price {spot.price} night</div>
-                    <div>{spot.avgRating}★</div>
+                    <div className="picturetext">
+                    <div>{spot.city}</div>
+                    <div>{spot.state}</div>
+                    <div className='rating'> ★{spot.avgRating}</div>
+                    </div>
+                    <div className='price'>$price {spot.price} night</div>
+                    </div>
                     </NavLink>
                 </div>
                 ))}
