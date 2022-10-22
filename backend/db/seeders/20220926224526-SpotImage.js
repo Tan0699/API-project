@@ -38,12 +38,12 @@ module.exports = {
     },
     {
       spotId:6,
-      url: "Monterey.com",
+      url: "https://a0.muscache.com/im/pictures/miso/Hosting-44245129/original/f34c88dd-d7ca-4fd9-b87d-00b8f038b27e.jpeg?im_w=1200",
       preview:true
     },
     {
       spotId:7,
-      url: "Sacramento.com",
+      url: "https://a0.muscache.com/im/pictures/ff86da2c-30ca-4ab9-b13b-f213c6322793.jpg?im_w=720",
       preview:true
     }
    ])

@@ -13,7 +13,6 @@ useEffect(()=>{
 
 return (
     <div className="Container">
-        <div>lmao</div>
             <div className="alltheSpots">
                 {theSpots.map(spot =>(  
                 <div key={spot.id} className="oneSpot">
