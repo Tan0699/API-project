@@ -45,8 +45,10 @@ const revValues = getReviews
 // }
 const nodupeReview = revValues?.filter(review =>((
     review.userId===sessionUser?.id)))
-
-// console.log("only1rev",nodupeReview)
+    // const onlyone = revValues?.filter(review =>((
+    //     review.userId!==sessionUser?.id)))
+// console.log("one rev",onlyone)
+console.log("only1rev",nodupeReview)
 if(!getReviews) return null
 // console.log("rev",revValues)
 const helper = async (reviewId) =>{
@@ -73,7 +75,7 @@ const helper2 = async () =>{
 
 return (
     <div className="Container">
-         <div>{getspot.name}</div>
+         <div className='spots'>{getspot.name}</div>
          <div className="pics">
         <img src={`${imageUrl?.[0]?.url}`}/>  
         {/* <img src={`${imageUrl?.[1]?.url}`}/>  
@@ -140,18 +142,23 @@ return (
         {/* {revValues.filter(())} */}
         {/* &&!nodupeReview */}
         {/* {!nodupeReview? */}
-        {revValues?.map((review)=>(
+        {/* {revValues?.map((review)=>(
             <div key={review.id}>
                {(review.userId!=sessionUser?.id)
-               &&(sessionUser?.id !==getspot?.ownerId 
-                && (!nodupeReview.length)&&!!sessionUser)? 
+               &&((sessionUser?.id !==getspot?.ownerId )
+                && (!nodupeReview.length)
+                &&!!sessionUser)? 
                <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
                <button>LEAVE A REV</button>{console.log("review Id",review.userId,typeof review.userId)}{console.log("sessionUser Id",sessionUser.Id,typeof review.userId)}
                 </NavLink>
                 :null}
             </div>
-        ))}
-               
+        ))} */}
+               <div>
+                {(!nodupeReview.length)&&(sessionUser?.id !==getspot?.ownerId )? <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
+               <button>LEAVE A REV</button>
+                </NavLink> :null}
+               </div>
 
                     {/* the review.userId  */}
               
