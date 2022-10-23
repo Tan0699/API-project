@@ -80,24 +80,35 @@ const helper2 = async () =>{
 
 return (
     <div className="Container">
-         <div className='spots'>{getspot.name}</div>
+
+
+        <div className='page'>
          <div className="pics">
-        <img src={`${imageUrl?.[0]?.url}`}/>  
+         <div className='name'>{getspot.name}</div>
+         <div className='text'>
+        <div className='star'>★{getspot.avgRating}</div>
+        <div className='dot'> · </div>
+        <div className='rev'>{getspot.numReviews} Reviews </div>
+        <div className='dot2'> · </div>
+        <div className='city'>{getspot.city} ,  </div>
+        <div className='state'>{getspot.state} , </div>
+        <div className='country'>{getspot.country}</div>
+        </div>
+        <img className='pic1' src={`${imageUrl?.[0]?.url}`}/> 
+        <div>
+            <div className='belongs'>Entire rental Unit hosted by {getspot.Owner.firstName} {getspot.Owner.lastName} </div>
+            <div className='text2'>1+ friends · 1room · 0 beds · 0 baths · 1 floor </div>
+            <div className='icon'>
+            <i class="fa-sharp fa-solid fa-cat"></i></div>
+        
+            <div className='solid'></div>
+            <div className='solid2'></div>
+        </div>   
         {/* <img src={`${imageUrl?.[1]?.url}`}/>  
         <img src={`${imageUrl?.[2]?.url}`}/>
         <img src={`${imageUrl?.[3]?.url}`}/>
         <img src={`${imageUrl?.[4]?.url}`}/> */}
-        </div>
-        <div>{getspot.avgRating}★ From </div>
-        <div>{getspot.numReviews} Reviews</div>
-        <div>{getspot.url}</div>
-        <div>{getspot.city}</div>
-        <div>{getspot.country}</div>
-        <div>{getspot.address}</div>
-        <div>{getspot.description}</div>
-        <div>${getspot.price} Per Night</div>
-        <div>{getspot.state}</div>
-        <div>
+       
         {/* {!!(getReviews.Reviews)?<div> */}
         {/* <div>{getReviews.Reviews?.[0]?.User.firstName}</div>
         <div>{getReviews.Reviews?.[0]?.review}</div>
@@ -111,34 +122,48 @@ return (
        {/* {revValues.forEach((revi) =>{
           //{review.id}
        })} */}
-       <ul>
+
+       <div className='cancel'>
+        
+       <div className='cry'><i class="fa-sharp fa-solid fa-face-sad-cry"></i>  </div>
+       <div className='sadge'>Cancellations will make your pet friend sad</div>
+        </div>
+        <div className='solid'></div>
+        <div className='solid2'></div>
         {revValues?.map((review)=>(
-            <li key={review.id}>
+            <div key={review.id}>
               {review.User.firstName}  {review.stars}★ {review.review}  {review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
         >DELEETE REV</button>:null}
-            </li>
+            </div>
         ))}
-       </ul>
+       </div>
+
+
+
+
+
+
+
         {/* </div>:null} */}
-        </div>
+      
         
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
-        
         <NavLink to='/'>
         <button  onClick={()=>(helper2())}
         >DELEETE SPOT</button>
         </NavLink>
         :null}
-        
         </div>: null}
         </div>
+
+
+
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
         <NavLink to={`/spots/${getspot.id}/edit`}>
         <button 
         >UPDATTE</button>
         </NavLink>
         :null}
-        
         </div>: null}
         </div>
 
@@ -159,6 +184,8 @@ return (
                 :null}
             </div>
         ))} */}
+
+
                <div>
                 {!!sessionUser&&(!nodupeReview.length)&&(sessionUser?.id !==getspot?.ownerId )? <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
                <button>LEAVE A REV</button>
@@ -190,7 +217,7 @@ return (
 
 
 
-        
+        </div>
         {/* </div> */}
         </div>
     
