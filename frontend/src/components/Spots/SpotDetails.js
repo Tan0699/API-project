@@ -90,12 +90,12 @@ return (
      <div className="pics">
          <div className='name'>{getspot.name}</div>
          <div className='text'>
-             <div className='star'>★{getspot.avgRating}</div>
-             <div className='dot'> · </div>
-             <div className='rev'>{getspot.numReviews} Reviews </div>
-             <div className='dot2'> · </div>
-             <div className='city'>{getspot.city} ,  </div>
-             <div className='state'>{getspot.state} , </div>
+            <div className='star'>★{getspot.avgRating}</div>
+            <div className='dot'> · </div>
+            <div className='rev'>{getspot.numReviews} Reviews </div>
+            <div className='dot2'> · </div>
+            <div className='city'>{getspot.city} ,  </div>
+            <div className='state'>{getspot.state} , </div>
             <div className='country'>{getspot.country}</div>
         </div>
             <img className='pic1' src={`${imageUrl?.[0]?.url}`}/>
@@ -106,64 +106,96 @@ return (
                     </div>
                  <div className='solid'></div>
                  <div className='solid2'></div>
-        </div>
+     </div>
          {/*MAKE GRID HERERE  */}
         <div className='belowpic'>
 
             <div className='col1'>
                     <div className='grid1'>
-                    
-                    <i class="fa-sharp fa-solid fa-door-open"></i>
-                    <i class="fa-sharp fa-solid fa-otter"></i>
+                        <i class="fa-sharp fa-solid fa-door-open"></i>
+                        <i class="fa-sharp fa-solid fa-otter"></i>
+                         <div className='cry'><i class="fa-sharp fa-solid fa-face-sad-cry"></i></div>
                     </div>
+
                     <div className='grid2'>
+                        <div className='check1'>Self check-in</div>
+                        <div className='check2'>Check yourself in with the keypad.</div>
+                        <div className='solid4'></div>
+                        <div className='hosttext'>The Otts are a Superhost</div>
+                        <div className='hosttext2'>Otts are cute.</div>
+                        <div className='solid5'></div>
+                        <div className='sadge'>Cancellations will make your pet friend sad</div>
+                   </div>
+            </div>
 
-                    </div>
-                
-         
-       
+            <div className='col2'>p 
+            </div>
+           
+        </div>     
+        
+        
     
-                 <div className='check1'>Self check-in</div>
-                 <div className='check2'>Check yourself in with the keypad.</div>
-                    <div className='host'>
     
-                        <div className='hosttext'>The Scotts is a Superhost</div><div className='hosttext2'>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
-                    </div>
-                </div>
+    
+                 
                         
-                <div className='cancel'>
-                    <div className='cry'><i class="fa-sharp fa-solid fa-face-sad-cry"></i>
-                    </div>
-                    <div className='sadge'>Cancellations will make your pet friend sad</div>
+              
+    
+           
+
+       
+
+
+            
+
+
+    
+            
+
+
+
+        <div className='solid1'></div>
+            {revValues?.map((review)=>(
+                <div key={review.id}>
+                {review.User.firstName}  {review.stars}★ {review.review}  {review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
+                    >DELEETE REV</button>:null}
                 </div>
-                <div className='solid'></div>
-                <div className='solid2'></div>
-            </div>
+                    ))}
+     
 
-        <div className='col2'>plSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs
+
+
+                            <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
+                                <NavLink to='/'>
+                                 <button  onClick={()=>(helper2())}
+                                >DELEETE SPOT</button>
+                               </NavLink>:null}
+                                </div>: null}
+                            </div>
+
+
+
+                            <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
+                                 <NavLink to={`/spots/${getspot.id}/edit`}>
+                                <button>UPDATTE</button>
+                                 </NavLink>:null}
+                          </div>: null}
+        
+
+                        <div>
+                         {!!sessionUser&&(!nodupeReview.length)&&(sessionUser?.id !==getspot?.ownerId )? <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
+                         <button>LEAVE A REV</button>
+                            </NavLink> :null}
+                        </div>
         </div>
+        </div>      
+        </div>      
+                                                
 
 
 
-
-
-    </div>
-
-
-
-
-
-        {revValues?.map((review)=>(
-            <div key={review.id}>
-              {review.User.firstName}  {review.stars}★ {review.review}  {review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
-        >DELEETE REV</button>:null}
-            </div>
-        ))}
-       </div>
-
-
-
-
+        )} 
+        export default ShowSpot;
 
 
  {/* <img src={`${imageUrl?.[1]?.url}`}/>  
@@ -187,25 +219,6 @@ return (
         {/* </div>:null} */}
       
         
-        <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
-        <NavLink to='/'>
-        <button  onClick={()=>(helper2())}
-        >DELEETE SPOT</button>
-        </NavLink>
-        :null}
-        </div>: null}
-        </div>
-
-
-
-        <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
-            <NavLink to={`/spots/${getspot.id}/edit`}>
-            <button>UPDATTE</button>
-            </NavLink>:null}
-       </div>: null}
-        
-
-        
         
         {/* {revValues.filter(())} */}
         {/* &&!nodupeReview */}
@@ -224,11 +237,7 @@ return (
         ))} */}
 
 
-               <div>
-                {!!sessionUser&&(!nodupeReview.length)&&(sessionUser?.id !==getspot?.ownerId )? <NavLink to={`/spots/${getspot.id}/reviewCreate`}>
-               <button>LEAVE A REV</button>
-                </NavLink> :null}
-               </div>
+               
               
                     {/* the review.userId  */}
               
@@ -253,17 +262,4 @@ return (
 
 
 
-
-
-        </div>     
-        {/* </div> */}
-</div>
-    
-)
-}       
-                                                
-
-
-
-
-export default ShowSpot;
+{/* </div> */}

@@ -79,9 +79,9 @@
     border-top: 1px solid #bbb;
     padding-bottom: 20px;
   }
-  .cry{
+  /* .cry{
     font-size: 40px;
-  }
+  } */
 
   /* .cancel{
     display: flex;
@@ -97,5 +97,37 @@
   }
   .col1{
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 10fr;
+  }
+
+  .grid1{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    font-size: 30px;
+    gap: 30px;
+  }
+
+ .check1{
+  font-weight: bold;
+ }
+
+ 
+  .solid3{
+    border-top: 1px solid white;
+    padding-bottom: 14px;
+  }
+  .hosttext{
+    font-weight: bold;
+  }
+  .sadge{
+    font-weight: bold;
+  }
+  .solid4{
+    border-top: 1px solid white;
+    padding-bottom: 20px;
+  }
+  .solid5{
+    border-top: 1px solid white;
+    padding-bottom: 32px;
   }
