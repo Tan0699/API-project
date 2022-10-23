@@ -20,13 +20,13 @@ min-height: 280px;
     /* grid-template-rows:minmax(200px) ; */
     /* grid-template-rows: repeat(auto-fit, minmax(270px, 1fr)); */
      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-     gap: 10px;
+     gap: 5px;
      
 }
  .pictureWrap{ 
      display: flex;
     flex-direction: column;
-    padding:15px 0px 20px 10px;
+    padding:5px 0px 20px 10px;
     text-decoration: none;  
  }
 
@@ -45,7 +45,7 @@ min-height: 280px;
 .rating{
    padding: 0px 20px;
 
- margin-right: 0%;
+ margin-right: -20px;
  display: flex;
  justify-content: flex-end;
 }
@@ -73,4 +73,5 @@ min-height: 280px;
     padding-left: 3px;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
+    
 }
