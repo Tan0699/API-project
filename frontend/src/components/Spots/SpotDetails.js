@@ -81,30 +81,92 @@ const helper2 = async () =>{
 return (
     <div className="Container">
 
+  <div className='page'>
 
-        <div className='page'>
-         <div className="pics">
+
+
+
+
+     <div className="pics">
          <div className='name'>{getspot.name}</div>
          <div className='text'>
-        <div className='star'>★{getspot.avgRating}</div>
-        <div className='dot'> · </div>
-        <div className='rev'>{getspot.numReviews} Reviews </div>
-        <div className='dot2'> · </div>
-        <div className='city'>{getspot.city} ,  </div>
-        <div className='state'>{getspot.state} , </div>
-        <div className='country'>{getspot.country}</div>
+             <div className='star'>★{getspot.avgRating}</div>
+             <div className='dot'> · </div>
+             <div className='rev'>{getspot.numReviews} Reviews </div>
+             <div className='dot2'> · </div>
+             <div className='city'>{getspot.city} ,  </div>
+             <div className='state'>{getspot.state} , </div>
+            <div className='country'>{getspot.country}</div>
         </div>
-        <img className='pic1' src={`${imageUrl?.[0]?.url}`}/> 
-        <div>
+            <img className='pic1' src={`${imageUrl?.[0]?.url}`}/>
             <div className='belongs'>Entire rental Unit hosted by {getspot.Owner.firstName} {getspot.Owner.lastName} </div>
-            <div className='text2'>1+ friends · 1room · 0 beds · 0 baths · 1 floor </div>
-            <div className='icon'>
-            <i class="fa-sharp fa-solid fa-cat"></i></div>
-        
-            <div className='solid'></div>
-            <div className='solid2'></div>
-        </div>   
-        {/* <img src={`${imageUrl?.[1]?.url}`}/>  
+                <div className='text2'>1+ friends · 1room · 0 beds · 0 baths · 1 floor </div>
+                    <div className='icon'>
+                    <i class="fa-sharp fa-solid fa-cat"></i>
+                    </div>
+                 <div className='solid'></div>
+                 <div className='solid2'></div>
+        </div>
+         {/*MAKE GRID HERERE  */}
+        <div className='belowpic'>
+
+            <div className='col1'>
+                    <div className='grid1'>
+                    
+                    <i class="fa-sharp fa-solid fa-door-open"></i>
+                    <i class="fa-sharp fa-solid fa-otter"></i>
+                    </div>
+                    <div className='grid2'>
+
+                    </div>
+                
+         
+       
+    
+                 <div className='check1'>Self check-in</div>
+                 <div className='check2'>Check yourself in with the keypad.</div>
+                    <div className='host'>
+    
+                        <div className='hosttext'>The Scotts is a Superhost</div><div className='hosttext2'>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
+                    </div>
+                </div>
+                        
+                <div className='cancel'>
+                    <div className='cry'><i class="fa-sharp fa-solid fa-face-sad-cry"></i>
+                    </div>
+                    <div className='sadge'>Cancellations will make your pet friend sad</div>
+                </div>
+                <div className='solid'></div>
+                <div className='solid2'></div>
+            </div>
+
+        <div className='col2'>plSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+        {revValues?.map((review)=>(
+            <div key={review.id}>
+              {review.User.firstName}  {review.stars}★ {review.review}  {review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
+        >DELEETE REV</button>:null}
+            </div>
+        ))}
+       </div>
+
+
+
+
+
+
+ {/* <img src={`${imageUrl?.[1]?.url}`}/>  
         <img src={`${imageUrl?.[2]?.url}`}/>
         <img src={`${imageUrl?.[3]?.url}`}/>
         <img src={`${imageUrl?.[4]?.url}`}/> */}
@@ -122,28 +184,6 @@ return (
        {/* {revValues.forEach((revi) =>{
           //{review.id}
        })} */}
-
-       <div className='cancel'>
-        
-       <div className='cry'><i class="fa-sharp fa-solid fa-face-sad-cry"></i>  </div>
-       <div className='sadge'>Cancellations will make your pet friend sad</div>
-        </div>
-        <div className='solid'></div>
-        <div className='solid2'></div>
-        {revValues?.map((review)=>(
-            <div key={review.id}>
-              {review.User.firstName}  {review.stars}★ {review.review}  {review.userId===sessionUser?.id? <button  onClick={()=>(helper(review.id))}
-        >DELEETE REV</button>:null}
-            </div>
-        ))}
-       </div>
-
-
-
-
-
-
-
         {/* </div>:null} */}
       
         
@@ -159,13 +199,11 @@ return (
 
 
         <div>{!!sessionUser?<div>{(sessionUser.id===getspot.ownerId)?
-        <NavLink to={`/spots/${getspot.id}/edit`}>
-        <button 
-        >UPDATTE</button>
-        </NavLink>
-        :null}
-        </div>: null}
-        </div>
+            <NavLink to={`/spots/${getspot.id}/edit`}>
+            <button>UPDATTE</button>
+            </NavLink>:null}
+       </div>: null}
+        
 
         
         
@@ -191,7 +229,7 @@ return (
                <button>LEAVE A REV</button>
                 </NavLink> :null}
                </div>
-
+              
                     {/* the review.userId  */}
               
         {/* <div>{(!!sessionUser)?<div>{!(sessionUser.id===getspot.ownerId)?
@@ -217,9 +255,9 @@ return (
 
 
 
-        </div>
+        </div>     
         {/* </div> */}
-        </div>
+</div>
     
 )
 }       
