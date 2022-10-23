@@ -88,18 +88,18 @@ return (
 
 
      <div className="pics">
-         <div className='name'>{getspot.name}</div>
+         <div className='name'>{getspot?.name}</div>
          <div className='text'>
-            <div className='star'>★{getspot.avgRating}</div>
+            <div className='star'>★{getspot?.avgRating}</div>
             <div className='dot'> · </div>
-            <div className='rev'>{getspot.numReviews} Reviews </div>
+            <div className='rev'>{getspot?.numReviews} Reviews </div>
             <div className='dot2'> · </div>
-            <div className='city'>{getspot.city} ,  </div>
-            <div className='state'>{getspot.state} , </div>
-            <div className='country'>{getspot.country}</div>
+            <div className='city'>{getspot?.city} ,  </div>
+            <div className='state'>{getspot?.state} , </div>
+            <div className='country'>{getspot?.country}</div>
         </div>
             <img className='pic1' src={`${imageUrl?.[0]?.url}`}/>
-            <div className='belongs'>Entire rental Unit hosted by {getspot.Owner.firstName} {getspot.Owner.lastName} </div>
+            <div className='belongs'>Entire rental Unit hosted by {getspot?.Owner?.firstName} {getspot?.Owner?.lastName} </div>
                 <div className='text2'>1+ friends · 1room · 0 beds · 0 baths · 1 floor </div>
                     <div className='icon'>
                     <i class="fa-sharp fa-solid fa-cat"></i>
