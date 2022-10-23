@@ -131,3 +131,14 @@
     border-top: 1px solid white;
     padding-bottom: 32px;
   }
+#revButton{
+  background-color: rgb(209, 8, 245);
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+
+.solid6{
+  height: 20px;
+  background: rgb(0, 0, 0);
+}

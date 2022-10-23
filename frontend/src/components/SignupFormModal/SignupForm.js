@@ -40,12 +40,15 @@ function SignupFormPage() {
 
   return (
     <form className="signup" onSubmit={handleSubmit}>
+      <div className="formwrap">
+      <div className="signme">Sign Up</div>
+      <div className="line"></div>
       <div className="welcome">Welcome to FnF</div>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        <input
+      <label className="lab1">
+        <input className="inp1"
         placeholder="Email"
           type="text"
           maxLength={256}
@@ -55,7 +58,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        <input
+        <input className="inp1"
         placeholder="Username"
           type="text"
           minLength={4}
@@ -66,7 +69,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        <input
+        <input className="inp1"
         placeholder="Password"
           type="password"
           value={password}
@@ -77,7 +80,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        <input
+        <input className="inp1"
         placeholder="Confirm Password"
           type="password"
           maxLength={255}
@@ -88,7 +91,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        <input
+        <input className="inp1"
         placeholder="Last Name"
           type="text"
           maxLength={30}
@@ -98,7 +101,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        <input
+        <input className="inp1"
         placeholder="First Name"
           type="text"
           maxLength={30}
@@ -107,7 +110,10 @@ function SignupFormPage() {
           required
         />
       </label>
+      <div className="signbut">
       <button className="signupButton" type="submit">Continue</button>
+      </div>
+      </div>
     </form>
     
   );

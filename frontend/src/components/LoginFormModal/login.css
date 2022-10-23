@@ -8,12 +8,16 @@
   }
 
   .loginButton {
-    background-color: rgb(197, 5, 69);
+    background-color: rgb(219,16,99);
     border: 0px;
-    height:20px;
     color: white;
-    border-radius: 3px;
-    font-size: 9px;
+    /* border-radius: 3px; */
+    font-size: 30px;
+    height:40px;
+  
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    width: 460px;
   }
 
   .welcome{
@@ -22,4 +26,64 @@
     margin-bottom: -20px;
     color:black;
     font-weight:bold; 
+    font-size:30px ;
+    font-family: 'Montserrat', sans-serif;
   }
+ 
+  .demoButton{
+    background-color: rgb(219,16,99);
+    border: 0px;
+    color: white;
+   
+    /* border-radius: 3px; */
+    font-size: 30px;
+    height:40px;
+    border-radius: 8px;
+    
+    font-family: 'Montserrat', sans-serif;
+    width: 460px;
+  }
+
+  .container{
+    width: 500px;
+    
+  }
+.user{
+  height:40px;
+  width: 452px;
+  font-size:30px ;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 8px;
+  
+}
+.pw{
+    height:40px;
+    width: 452px;
+    font-size:30px ;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 8px;
+}
+.log{
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+.line{
+  border-top: 1px solid #bbb;
+  padding-bottom: 20px;
+}
+.formwrap{
+  padding: 10px;
+}
+.demowrap{
+   padding-top: 20px;
+   padding-bottom: 20px;
+   
+}
+.logwrap{
+  padding-top: 20px;
+}
