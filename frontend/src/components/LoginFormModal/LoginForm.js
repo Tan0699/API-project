@@ -8,7 +8,7 @@ function LoginForm() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -22,7 +22,7 @@ function LoginForm() {
   };
 
   return (
-    <form className="container" onSubmit={handleSubmit}>
+    <form  className="container" onSubmit={handleSubmit}>
       <div className="welcome">Welcome to FnF</div>
       <div className="login">
       <ul>
