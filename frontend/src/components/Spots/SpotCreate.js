@@ -213,7 +213,7 @@ console.log("country", typeof country)
         />
       </label>
       <div className="hostwrap">
-      <button   id='host' disabled={!!errorMessages.length} className="createspot" type="submit"><div className='hosttext'>Host A Spot</div></button>
+      <button   id='host' disabled={!!errorMessages.length} className="createspot" type="submit"><div className='hosttext3'>Host A Spot</div></button>
       </div>
     </form>
     </div>

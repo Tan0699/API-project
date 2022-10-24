@@ -93,7 +93,7 @@
 
   .belowpic{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 2fr;
     
   }
   .col1{
@@ -143,3 +143,14 @@
   height: 20px;
   background: rgb(0, 0, 0);
 }
+.square{ 
+  display: flex;
+  width:380px ;
+  height:300px ;
+  border:1px solid white; 
+ background: transparent ;
+ align-items: flex-start;
+ border-radius: 8px;
+ box-shadow: 0 0 35px rgba(33,33,33,.2);
+ position: sticky;
+} 

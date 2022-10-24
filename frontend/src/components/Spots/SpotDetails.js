@@ -130,7 +130,8 @@ const ShowSpot = () => {
                         </div>
                     </div>
 
-                    <div className='col2'>p
+                    <div className='col2'>
+                        <div className='square'></div>
                     </div>
 
                 </div>
