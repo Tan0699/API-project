@@ -11,4 +11,11 @@ FnF is a full stack web application that is inspired by [AirBnB](https://www.air
 ![Redux](https://img.shields.io/badge/Redux%20-%23764ABC.svg?&style=for-the-badge&logo=Redux&logoColor=white)
 ![Heroku](https://img.shields.io/badge/Heroku%20-%23430098.svg?&style=for-the-badge&logo=Heroku&logoColor=white)
 
-##Wiki Link
+## Wiki 
+[API DOC](https://github.com/Tan0699/API-project/wiki/API-DOC)
+
+[Schema](https://github.com/Tan0699/API-project/wiki/AirBnB-Schema)
+
+[Feature](https://github.com/Tan0699/API-project/wiki/Features)
+
+[Redux Shape](https://github.com/Tan0699/API-project/wiki/Redux-Shape)
