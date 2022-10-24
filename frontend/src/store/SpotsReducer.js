@@ -62,20 +62,7 @@ export const getAllSpots = () => async dispatch => {
       return list
     }
   };
-  export const newSpotCreate = data => async dispatch => {
-    const response = await csrfFetch(`/api/spots`,{
-    method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    if (response.ok) {
-      const list = await response.json();
-      dispatch(createdSpot(list));
-      return list
-    }
-  };
+  
   export const deleteThisSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`,{
     method: 'DELETE',
@@ -101,8 +88,8 @@ export const getAllSpots = () => async dispatch => {
       return list
     }
   }
-  export const createSpotImage = (data,spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spotId}/images`,{
+  export const newSpotCreate = (data,payloadImage) => async dispatch => {
+    const response = await csrfFetch(`/api/spots`,{
     method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -111,7 +98,24 @@ export const getAllSpots = () => async dispatch => {
     })
     if (response.ok) {
       const list = await response.json();
-      dispatch(addSpotImage(list));
+      dispatch(createSpotImage(list,payloadImage));
+      return list
+    }
+  };
+  export const createSpotImage = (spot,payloadImage) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}/images`,{
+    method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payloadImage)
+    })
+    if (response.ok) {
+      const list = await response.json();
+      spot.previewImage=list.url
+      console.log("data with image",spot)
+      console.log("the list: ",list)
+      dispatch(createdSpot(spot));
       return list
     }
   };
