@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { createSpotImage } from '../../store/SpotsReducer';
-
+import './SpotUpdate.css';
 const EditMySpot = () => {
   const { spotId } = useParams()
   const thisSpot = useSelector(state => state.spots.oneSpot)
@@ -111,13 +111,15 @@ const EditMySpot = () => {
 
 
     <form className="spotC" onSubmit={handleSubmit}>
-      <div>
+      <div className='title'>Update Your Unit</div>
+      <div className='line'></div>
+      <div className='errormsg'>
         {errorMessages.map((error, idx) => (
           <div key={idx}>{error}</div>))}
       </div>
-      <div className="welcome">F</div>
-      <label>
-        <input
+      <div className="welcome"></div>
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Name"
           type="text"
           maxLength={50}
@@ -126,8 +128,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="City"
           type="text"
           value={city}
@@ -135,8 +137,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Address"
           type="text"
           maxLength={255}
@@ -145,8 +147,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Description"
           type="text"
           maxLength={255}
@@ -155,8 +157,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Price"
           type="text"
           value={price}
@@ -164,8 +166,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Latitutde"
           type="text"
           value={lat}
@@ -173,8 +175,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Longitude"
           type="text"
           value={lng}
@@ -182,8 +184,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="State"
           type="text"
           maxLength={255}
@@ -192,8 +194,8 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect2'>
+        <input className='rectangles2'
           placeholder="Country"
           type="text"
           maxLength={255}
@@ -202,7 +204,9 @@ const EditMySpot = () => {
           required
         />
       </label>
-      <button disabled={!!errorMessages.length} className="createspot" type="submit">Host dis</button>
+      <div className="hostwrap">
+      <button id='host'disabled={!!errorMessages.length} className="createspot" type="submit"><div className='hosttext'>Confirm</div></button>
+      </div>
     </form>
 
 

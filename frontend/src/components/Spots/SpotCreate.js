@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { createSpotImage, getAllSpots, newSpotCreate } from '../../store/SpotsReducer';
 import { useEffect,useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import './SpotCreate.css';
 const SpotCreateForm = ()=> {
 const [address,setAddress] = useState("")
 const [city,setCity] = useState("")
@@ -45,7 +45,7 @@ useEffect(()=>{
   const num9 = ("9")
   const num0= ("0")
   if(!sessionUser)errors.push("Must be logged in to Host a spot")
-  if(!(price>=0))errors.push("Price per day is invalid")
+  if(!(price>0))errors.push("Price per day is invalid")
   if(!((lat>=0)||(lat<0)))errors.push("Latitude is not valid")
   if(!((lng>=0)||(lng<0)))errors.push("Longitude is not valid")
   if(!!((country.includes(num1))||(country.includes(num2))||
@@ -56,7 +56,7 @@ useEffect(()=>{
   // if(!(lat>=0||lat<0))errors.push("Latitude is not valid")
   // if(isNaNlng)errors.push("Longitude is not valid")
   // if(!name)errors.push("Name is required")
-  // if(!(url.endsWith(".jpg")))errors.push("Url needs to end with .jpg")
+  if(!(url.endsWith(".jpg")))errors.push("Url needs to end with .jpg")
   // if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
 },[price,lat,lng,url,country])
@@ -104,7 +104,9 @@ console.log("country", typeof country)
   return (
     
       <>
+      <div className='wrapper'>
     <form className="spotC" onSubmit={handleSubmit}>
+      <div className='errormsg'>
     {!!sessionUser?
     <div>
       
@@ -112,9 +114,10 @@ console.log("country", typeof country)
         <div key={idx}>{error}</div>))}
    
         </div>   :<div>Please Login to host a Spot</div>}
-      <div className="welcome">     f    </div>
-      <label>
-        <input
+        </div>
+      <div className="welcome">         </div>
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Name"
           maxLength={50}
           type="text"
@@ -123,8 +126,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="City"
           type="text"
           value={city}
@@ -132,8 +135,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Address"
           type="text"
           maxLength={255}
@@ -142,8 +145,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Description"
           maxLength={255}
           type="text"
@@ -152,8 +155,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Price"
           type="text"
           value={price}
@@ -161,8 +164,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Latitutde"
           type="text"
           value={lat}
@@ -170,8 +173,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Longitude"
           type="text"
           value={lng}
@@ -179,8 +182,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="State"
           type="text"
           maxLength={255}
@@ -189,8 +192,8 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <label>
-        <input
+      <label className='rect'>
+        <input className='rectangles'
         placeholder="Country"
           type="text"
           maxLength={255}
@@ -198,7 +201,9 @@ console.log("country", typeof country)
           onChange={(e) => setCountry(e.target.value)}
           required
         />
-        <input
+        </label>
+        <label className='rect'>
+        <input className='rectangles'
         placeholder="Spot Image"
           type="text"
           maxLength={255}
@@ -207,8 +212,11 @@ console.log("country", typeof country)
           required
         />
       </label>
-      <button disabled={!!errorMessages.length} className="createspot" type="submit">Host dis</button>
+      <div className="hostwrap">
+      <button   id='host' disabled={!!errorMessages.length} className="createspot" type="submit"><div className='hosttext'>Host A Spot</div></button>
+      </div>
     </form>
+    </div>
     </>
   );
 }

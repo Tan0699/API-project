@@ -7,9 +7,11 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormModal';
 
+import { useState } from 'react';
+
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
-
+  // const [showMenu,setShowMenu] = useState(false)
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -18,8 +20,9 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <SignupFormModal />
+      <LoginFormModal/>
+      <SignupFormModal/>
+        
       </>
     );
   }
@@ -32,7 +35,8 @@ function Navigation({ isLoaded }){
         <button>Become a Host</button>
         
         </NavLink>
-        <NavLink exact to="/">Home</NavLink>
+        
+        <NavLink exact to="/"><img src="https://i.ibb.co/7NMVBTx/fflogo.png" alt="fflogo" border="0"></img></NavLink>
        <div/>
         {isLoaded && sessionLinks}
       </li>
