@@ -151,8 +151,8 @@ const ShowSpot = () => {
                       </div>
                      
                     <div className='othertwo'>
-                    <div className='spotratingagain'> ★ {getspot?.avgRating}</div>
-                    <div className='spotreviewsagain'> · {getspot?.numReviews}</div>
+                    <div className='spotratingagain'> <i class="fa-solid fa-star"></i> {getspot?.avgRating}</div>
+                    <div className='spotreviewsagain'>  {getspot?.numReviews} Reviews</div>
                     
                     </div>
                     <div className='square3'></div>
@@ -193,11 +193,11 @@ const ShowSpot = () => {
                             <button id='revButton'>Leave a Review!</button>
                         </NavLink> : null}
                     </div>
-
+            
                     <div>{!!sessionUser ? <div>{(sessionUser.id === getspot.ownerId) ?
                         <NavLink to='/'>
-                            <button onClick={() => (helper2())}
-                            >DELEETE SPOT</button>
+                            <button id='deleters' onClick={() => (helper2())}
+                            >Delete Your Unit </button>
                         </NavLink> : null}
                     </div> : null}
 
@@ -205,12 +205,12 @@ const ShowSpot = () => {
 
                         <div>{!!sessionUser ? <div>{(sessionUser.id === getspot.ownerId) ?
                             <NavLink to={`/spots/${getspot.id}/edit`}>
-                                <button>UPDATTE</button>
+                                <button id='updaters'>Update Your Unit</button>
                             </NavLink> : null}
                         </div> : null}
                         </div>
-
-                    </div>
+                        </div>
+                 
 
                 </div>
             </div>
