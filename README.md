@@ -19,3 +19,20 @@ FnF is a full stack web application that is inspired by [AirBnB](https://www.air
 [Feature](https://github.com/Tan0699/API-project/wiki/Features)
 
 [Redux Shape](https://github.com/Tan0699/API-project/wiki/Redux-Shape)
+
+## How to Start
+Clone the repo 
+npm install at the root folder
+cd into the back end, and npm start 
+cd into the front end in a different terminal, and npm start there as well
+You are set!
+
+## Features Directiions: 
+#Home Page Demo User 
+
+You will be able to use the demo user login to test all of the websites functionalities.
+Signup if you want to create your own Account!
+
+
+
+![feature2](https://user-images.githubusercontent.com/106413691/197546251-5d1295c6-b955-4827-b9c0-8f3f091102ef.png)
