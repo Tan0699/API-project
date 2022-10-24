@@ -28,7 +28,7 @@ cd into the front end in a different terminal, and npm start there as well
 You are set!
 
 ## Features Directiions: 
-#Home Page Demo User 
+# Home Page Demo User 
 
 You will be able to use the demo user login to test all of the websites functionalities.
 Signup if you want to create your own Account!
