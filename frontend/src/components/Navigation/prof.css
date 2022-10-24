@@ -11,3 +11,23 @@
     border-radius: 1000px; 
     width: 40px;
 } */
+.profcontainer{
+    display: flex;
+    flex-direction: column;
+    flex: wrap;
+    border-radius: 20px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    z-index: 1;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    margin-left: -10px;
+}
+#logoutbutton{
+    background-color: rgb(219,16,99);
+    border-radius: 20px;
+    width: 90px;
+}
