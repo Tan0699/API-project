@@ -72,7 +72,7 @@ const ShowSpot = () => {
 
                 // dispatch(getSelectedSpot(getspot.id))
                 dispatch(getAllSpots())
-                //  history.push('/')
+                //  history.push('/spots/2')
             }, 1000)
 
 

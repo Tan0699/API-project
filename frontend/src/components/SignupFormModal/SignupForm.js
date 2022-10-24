@@ -1,5 +1,5 @@
 // frontend/src/components/SignupFormPage/index.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -18,8 +18,16 @@ function SignupFormPage() {
   const [lastName,setlastName]=useState("")
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState([]);
+  
 
-  if (sessionUser) return <Redirect to="/" />;
+
+  // useEffect(()=>{
+  //   const erro =[]
+  //   if(!(email.includes("@gmail.com")))errors.push("Email must end in @gmail.com")
+  //   setErrorMessages(erro)
+  // },[email])
+  // if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +58,8 @@ function SignupFormPage() {
       <label className="lab1">
         <input className="inp1"
         placeholder="Email"
-          type="text"
+          type="email"
+          
           maxLength={256}
           value={email}
           onChange={(e) => setEmail(e.target.value)}

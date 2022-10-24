@@ -69,6 +69,7 @@ export const getAllSpots = () => async dispatch => {
     })
     if (response.ok) {
       const data = await response.json()
+      console.log("spotid",spotId)
       dispatch(deletedspot(spotId));
       return data
 
@@ -153,8 +154,10 @@ export const getAllSpots = () => async dispatch => {
           ;
           case DELETE_SPOT: 
           newState = {...state,oneSpot:{}}
+          console.log("actionspot",action.payload)
           
           delete newState.everySpot[action.spotId]
+          console.log("newstateveryspot",newState.everySpot)
         ;
         return newState
           ;
