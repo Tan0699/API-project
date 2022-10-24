@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './prof.css';
 import { useHistory } from "react-router-dom";
-function ProfileButton({ user }) {
+function ProfileButton({ user,setsign,setlog }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory()
@@ -27,27 +27,32 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-  
+    setlog(false)
+    setsign(false)
     dispatch(sessionActions.logout());
     history.push('/')
   };
   
   return (
     <>
+    <div className="profcontainer">
       <div id="profile" onClick={openMenu}>
         <div className="icon6">
       <img id="icon5" src="https://i.ibb.co/zJ2LJ1h/icon2.png" alt="icon2" />
       </div>
       </div>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="profile-dropdown">
+          <div className="content">
+          <div>{user.username}</div>
+          <div>{user.email}</div>
+          <div>
+            <button id="logoutbutton" onClick={logout}>Log Out</button>
+          </div>
+          </div>
+        </div>
       )}
+      </div>
     </>
   );
 }

@@ -37,7 +37,11 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <ProfileButton user={sessionUser} 
+        setsign={setsign}
+        setlog={setlog}
+      />
+      
     );
   } else {
     sessionLinks = (
@@ -81,12 +85,13 @@ function Navigation({ isLoaded }){
         <div className='logowrapwrap'>
         <NavLink exact to="/"><img id='logowrap' src="https://i.ibb.co/7NMVBTx/fflogo.png" alt="fflogo" border="0"></img></NavLink>
         </div>
-
+       
         <div className='otherwrap'>
+        {!!sessionUser?
         <NavLink exact to="/spotCreate">
         <img id='hostpic' src="https://i.ibb.co/FVGhx1r/hostpic.png" alt="hostpic" border="0"/>
         
-        </NavLink>
+        </NavLink>:null}
        <div/>
         {isLoaded && sessionLinks}
         </div>
