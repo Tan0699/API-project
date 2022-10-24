@@ -3,6 +3,73 @@
     float: right;
 } */
 
-a:visited{
+/* a:visited{
     text-decoration: none;
+} */
+#icon7{
+    border-radius: 90px;
+    width: 80px;
+    
+   }
+   #icon7:hover{
+       box-shadow: 0 0 11px rgba(33,33,33,.2);
+   }
+   #hostpic{
+    border-radius: 90px;
+    font-size: 30px;
+ }
+#hostpic:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+.navwrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+ 
+}
+#logowrap{
+    width: 100px;
+    
+}
+.otherwrap{
+    display: flex;
+    flex-direction: row;
+    
+}
+.logowrapwrap{
+    display: flex;
+    
+}
+/* .navcontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+} */
+.lognsign{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+}
+.thelog:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    border-radius: 15px;
+}
+.thesign:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    border-radius: 20px;
+    
+}
+.thelog{
+    width: 60px;
+   padding-left: 15px;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: bold;
+}
+.thesign{
+    width: 70px;
+   padding-left: 15px;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: bold;
 }

@@ -5,6 +5,7 @@ import { useEffect,useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createReview } from '../../store/ReviewsReducer';
 import { useParams } from 'react-router-dom';
+import './Review.css';
 const ReviewsCreateForm = ()=> {
   //review.length must not be greater than 255
   const [errorMessages, setErrorMessages] = useState([]);
@@ -52,14 +53,15 @@ useEffect(()=>{
     
         <>
       <form className="s" onSubmit={handleSubmit}>
-        {/* <div className="welcome">plsworkpepeASDFFHDSAJFIADJSJIADSFJIAFDSJIAFDSJI</div> */}
-        <div>
+        <div className='title'>Please Leave a Review!</div>
+        <div className='wrapper'>
+        <div className='error'>
       {errorMessages.map((error,idx) => (
         <div key={idx}>{error}</div>))}
         </div>
         <label>
-          <input
-          placeholder="Leave a Review"
+          <textarea className='textar'
+          placeholder="Enter Review Here"
             type="text"
             maxLength={255}
             value={review}
@@ -69,8 +71,8 @@ useEffect(()=>{
         </label>
         <label>
          
-          <input
-          placeholder="Rate this"
+          <input className='rate'
+          placeholder="Enter Rating Here"
             type="text"
             value={stars}
             max={5}
@@ -80,8 +82,10 @@ useEffect(()=>{
           />
         </label>
         
-
-        <button disabled={!!errorMessages.length} className="createREV" type="submit">create dis dis</button>
+        <div className='ratebutton'>
+        <button disabled={!!errorMessages.length} className="createREV" type="submit"><div className='confirm'>Confirm</div></button>
+        </div>
+        </div>
       </form>
       </>
     );

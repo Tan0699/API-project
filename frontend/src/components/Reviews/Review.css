@@ -1,23 +1,22 @@
-.spotC{
+.wrapper{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    
-    
+align-items: center;
 }
-.rectangles2{
+
+.textar{
     font-size:30px ;
     border-radius: 6px;
     font-family: 'Montserrat', sans-serif;
-    
+    width: 360px;
+    height: 200px;
 }
-.errormsg{
-    font-size: 23px;
-    padding-bottom: 15px;
+.rate{
+    font-size:30px ;
+    border-radius: 6px;
     font-family: 'Montserrat', sans-serif;
-    color: red;
 }
-#host{
+.createREV{
     width: 367px;
     height: 40px;
     background-color: rgb(219,16,99);
@@ -29,19 +28,27 @@
     
     border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
+}
+.confirm{
+    font-size:30px ;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
     
 }
-.hosttext4{
-    font-size: 30px;
-}
-
-.rect2{
-    padding: 5px;
-}
-.title{
-    font-size: 33px;
+.error{
+    font-size: 23px;
     padding-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
+    color: red;
+}
+.s{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.title{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
     font-weight: bold;
 }
-

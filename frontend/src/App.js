@@ -12,6 +12,7 @@ import DeletedPepehands from "./components/Spots/SpotDelete";
 import SpotDeleteForm from "./components/Spots/SpotDelete";
 import EditMySpot from "./components/Spots/SpotUpdate";
 import ReviewsCreateForm from "./components/Reviews/ReviewsCreate";
+import "./index.css";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,7 +22,10 @@ function App() {
 
   return (
     <>
+    <div className="isnav">
       <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className="notnav">
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
@@ -47,6 +51,7 @@ function App() {
           {/* </Route> */}
         </Switch>
       )}
+      </div>
     </>
   );
 }

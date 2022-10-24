@@ -205,7 +205,7 @@ const EditMySpot = () => {
         />
       </label>
       <div className="hostwrap">
-      <button id='host'disabled={!!errorMessages.length} className="createspot" type="submit"><div className='hosttext'>Confirm</div></button>
+      <button id='host'disabled={!!errorMessages.length} className="createspot" type="submit"><div className='hosttext4'>Confirm</div></button>
       </div>
     </form>
 

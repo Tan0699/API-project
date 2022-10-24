@@ -90,6 +90,7 @@ const ShowSpot = () => {
                 <div className="pics">
                     <div className='name'>{getspot?.name}</div>
                     <div className='text'>
+        
                         <div className='star'>★{getspot?.avgRating}</div>
                         <div className='dot'> · </div>
                         <div className='rev'>{getspot?.numReviews} Reviews </div>
@@ -97,6 +98,7 @@ const ShowSpot = () => {
                         <div className='city'>{getspot?.city} ,  </div>
                         <div className='state'>{getspot?.state} , </div>
                         <div className='country'>{getspot?.country}</div>
+                    
                     </div>
                     <img className='pic1' src={`${imageUrl?.[0]?.url}`} />
                     <div className='belongs'>Entire rental Unit hosted by {getspot?.Owner?.firstName} {getspot?.Owner?.lastName} </div>
@@ -128,7 +130,8 @@ const ShowSpot = () => {
                         </div>
                     </div>
 
-                    <div className='col2'>p
+                    <div className='col2'>
+                        <div className='square'></div>
                     </div>
 
                 </div>
