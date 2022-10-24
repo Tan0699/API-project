@@ -23,6 +23,9 @@ function LoginForm() {
 
   return (
     <form  className="container" onSubmit={handleSubmit}>
+      <div className="formwrap">
+      <div className="log">Log In</div>
+      <div className="line"></div>
       <div className="welcome">Welcome to FnF</div>
       <div className="login">
       <ul>
@@ -30,8 +33,8 @@ function LoginForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        <input
+      <label >
+        <input className="user"
           placeholder="Username or Email"
           type="text"
           value={credential}
@@ -39,8 +42,8 @@ function LoginForm() {
           required
         />
       </label>
-      <label>
-        <input
+      <label >
+        <input className="pw"
         placeholder="Password"
           type="password"
           value={password}
@@ -48,9 +51,14 @@ function LoginForm() {
           required
         />
       </label>
+      <div className="logwrap">
       <button className="loginButton" type="submit">Continue</button>
+      </div>
+      <div className="demowrap">
       <button className="demoButton" type="submit"
       onClick={()=>{setCredential("Demo-lition");setPassword("password")}}>Demo Login</button>
+      </div>
+      </div>
       </div>
     </form>
   );

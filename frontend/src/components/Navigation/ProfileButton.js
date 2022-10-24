@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-
+import './prof.css';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -31,9 +31,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <div id="profile" onClick={openMenu}>
+      <img id="icon4" src="https://i.ibb.co/zJ2LJ1h/icon2.png" alt="icon2" />
+      </div>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
