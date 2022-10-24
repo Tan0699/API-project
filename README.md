@@ -8,5 +8,6 @@ FnF is a full stack web application that is inspired by [AirBnB](https://www.air
 ![HTML](https://img.shields.io/badge/HTML_Academy%20-%23302683.svg?&style=for-the-badge&logo=HTML%20Academy&logoColor=white)
 ![React](https://img.shields.io/badge/React%20-%2361DAFB.svg?&style=for-the-badge&logo=React&logoColor=white)
 ![Node](https://img.shields.io/badge/Node.js%20-%23339933.svg?&style=for-the-badge&logo=Node.js&logoColor=white)
-![Redux}(https://img.shields.io/badge/Redux%20-%23764ABC.svg?&style=for-the-badge&logo=Redux&logoColor=white)
+![Redux](https://img.shields.io/badge/Redux%20-%23764ABC.svg?&style=for-the-badge&logo=Redux&logoColor=white)
 ![Heroku](https://img.shields.io/badge/Heroku%20-%23430098.svg?&style=for-the-badge&logo=Heroku&logoColor=white)
+
