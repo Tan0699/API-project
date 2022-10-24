@@ -127,20 +127,65 @@ const ShowSpot = () => {
                             <div className='hosttext2'>Otts are cute.</div>
                             <div className='solid5'></div>
                             <div className='sadge'>Cancellations will make your pet friend sad</div>
+                            <div className='solid5'></div>
+                            <div className='solid8'></div>
+                            <img id='aircover' src="https://i.ibb.co/dBtnzvT/aircover.png" alt="aircover" border="0"/>
+                            <div className='aircovertext'>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+                            <div className='solid5'></div>
+                            <div className='solid8'></div>
+                            <div className='solid5'></div>
                         </div>
                     </div>
 
                     <div className='col2'>
-                        <div className='square'></div>
+                        <div className='square'>
+                            <div className='squarecontents'>
+                            <div className='topofsquare'>
+                                <div className='pricenight'>
+                      <div className='spotprice'>
+                        ${getspot?.price}
+                        
+                        </div>
+                        <div className='nighttext'> night </div>
+                       
+                      </div>
+                     
+                    <div className='othertwo'>
+                    <div className='spotratingagain'> <i class="fa-solid fa-star"></i> {getspot?.avgRating}</div>
+                    <div className='spotreviewsagain'>  {getspot?.numReviews} Reviews</div>
+                    
+                    </div>
+                    <div className='square3'></div>
+                    <div className='square2'>
+                       <div className='square2text'> Unavailable
+                       </div>
+                        </div>
+                    
+                    </div>
+                    
+                      
+
+                      </div>
+                        </div>
                     </div>
 
                 </div>
 
                 <div className='themRevs'>
+                    
                     {revValues?.map((review) => (
-                        <div key={review.id}>
-                            {review.User.firstName}  {review.stars}★ {review.review}  {review.userId === sessionUser?.id ? <button onClick={() => (helper(review.id))}
-                            >DELEETE REV</button> : null}
+                        <div className='thereview' key={review.id}>
+                            <div className='firstname'>
+                            {review.User.firstName}
+                            </div>
+                            <div className='date'>
+                             {review.createdAt.slice(0,7)} 
+                             </div>
+                            <div className='readreview'>
+                             {review.review} 
+                             </div>
+                              {review.userId === sessionUser?.id ? <button className='delbutton' onClick={() => (helper(review.id))}
+                            >Delete Your Review</button> : null}
                         </div>))}
 
                     <div>
@@ -148,11 +193,11 @@ const ShowSpot = () => {
                             <button id='revButton'>Leave a Review!</button>
                         </NavLink> : null}
                     </div>
-
+            
                     <div>{!!sessionUser ? <div>{(sessionUser.id === getspot.ownerId) ?
                         <NavLink to='/'>
-                            <button onClick={() => (helper2())}
-                            >DELEETE SPOT</button>
+                            <button id='deleters' onClick={() => (helper2())}
+                            >Delete Your Unit </button>
                         </NavLink> : null}
                     </div> : null}
 
@@ -160,12 +205,12 @@ const ShowSpot = () => {
 
                         <div>{!!sessionUser ? <div>{(sessionUser.id === getspot.ownerId) ?
                             <NavLink to={`/spots/${getspot.id}/edit`}>
-                                <button>UPDATTE</button>
+                                <button id='updaters'>Update Your Unit</button>
                             </NavLink> : null}
                         </div> : null}
                         </div>
-
-                    </div>
+                        </div>
+                 
 
                 </div>
             </div>
