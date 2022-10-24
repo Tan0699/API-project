@@ -1,0 +1,46 @@
+.spotC{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+}
+.rectangles2{
+    font-size:30px ;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.errormsg{
+    font-size: 23px;
+    padding-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: red;
+}
+#host{
+    width: 367px;
+    height: 40px;
+    background-color: rgb(219,16,99);
+    border: 0px;
+    
+    /* border-radius: 3px; */
+    font-size: 30px;
+    height:40px;
+    
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.hosttext{
+    font-size: 30px;
+}
+
+.rect2{
+    padding: 5px;
+}
+.title{
+    font-size: 33px;
+    padding-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
