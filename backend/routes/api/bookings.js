@@ -20,15 +20,14 @@ router.get('/current',requireAuth, async (req, res) => {
         raw:true,
         where:{userId:req.user.id}
     })
-    console.log(myBookings.Bookings,"pepe1")
+    
     for (const spott of myBookings.Bookings) {
         let spotReviewd = await Spot.findOne({
             where: {id: spott.spotId,},
             attributes:['id','ownerId','address','city','state','country','lat','lng','name','price'],
             raw:true
         })
-        console.log(spotReviewd,"KAKAKAKKAK")
-        console.log(spott,"lmao")
+       
         const allowPreview = await SpotImage.findOne({
             where: {spotId: spott.spotId,preview:true },
             attributes:['url'],
@@ -36,9 +35,9 @@ router.get('/current',requireAuth, async (req, res) => {
         })
         if(allowPreview){
           spotReviewd.previewImage = allowPreview.url
-          console.log(spotReviewd,"ekekkekek")
+          
          }
-       console.log(allowPreview,"pepe1")
+     
        spott.Spot = spotReviewd
        
        //...
@@ -81,8 +80,7 @@ router.put('/:bookingId',requireAuth,validateBooking, async (req, res) => {
         }
 
             const old = findBooking.endDate
-            console.log(new Date(old).getTime())
-            console.log(new Date().getTime())
+           
             if(new Date(old).getTime()<new Date().getTime()){
               res.status(403)
                 return res.json({

@@ -20,7 +20,7 @@ const newReview = (review) =>{
 
 export const getSelectedReview = spotId => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
-    console.log("response",response)
+    
     if (response.ok) {
       const list = await response.json();
       dispatch(getReview(list));
@@ -76,7 +76,7 @@ const ReviewsReducer = (state = initialState, action) => {
           newState = {...state,everyReview:{...state.everyReview},oneReview:{...state.oneReview.Reviews}}
           // console.log("newState=>",newState)
           const revarray = Object.values(newState?.oneReview)
-          console.log("revarray",revarray)
+          
           const index = revarray.find((review)=>review.id ===action.reviewId)
           // delete newState.oneReview.Reviews[index]
           revarray.splice(index,1)

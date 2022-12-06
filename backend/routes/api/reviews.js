@@ -112,7 +112,7 @@ router.get('/current',requireAuth, async (req, res) => {
 router.delete('/:reviewId',requireAuth, async (req, res) => {
         const {reviewId} = req.params
         const myReview = await Review.findByPk(reviewId,{where:{userId:req.user.id}})
-        console.log(myReview)
+        
         if(!myReview){
             return res.status(404).json({
                 "message": "Review couldn't be found",

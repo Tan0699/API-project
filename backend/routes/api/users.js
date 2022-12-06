@@ -49,8 +49,7 @@ router.post(
     validateSignup,
     async (req, res) => {
       const { firstName,lastName,email,username,password } = req.body;
-      console.log(firstName)
-      console.log(lastName,"lmao")
+      
       const emailinvalid = await User.findOne({
         where:{email}
       })
@@ -65,13 +64,11 @@ router.post(
       }
       //.....
       const user = await User.signup({firstName,lastName,email, username, password });
-      console.log( user.firstName)
-      console.log( user.lastName)
+     
       const logged = {}
       // logged.user = user 
      let token = await setTokenCookie(res, user);
-     console.log( user)
-     console.log( user.lastName)
+   
       logged.id = user.id
       logged.firstName = firstName
       logged.lastName = lastName

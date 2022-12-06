@@ -69,7 +69,7 @@ export const getAllSpots = () => async dispatch => {
     })
     if (response.ok) {
       const data = await response.json()
-      console.log("spotid",spotId)
+   
       dispatch(deletedspot(spotId));
       return data
 
@@ -114,8 +114,7 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
       const list = await response.json();
       spot.previewImage=list.url
-      console.log("data with image",spot)
-      console.log("the list: ",list)
+    
       dispatch(createdSpot(spot));
       return list
     }
@@ -154,10 +153,10 @@ export const getAllSpots = () => async dispatch => {
           ;
           case DELETE_SPOT: 
           newState = {...state,oneSpot:{}}
-          console.log("actionspot",action.payload)
+        
           
           delete newState.everySpot[action.spotId]
-          console.log("newstateveryspot",newState.everySpot)
+        
         ;
         return newState
           ;
@@ -176,7 +175,7 @@ export const getAllSpots = () => async dispatch => {
           newState = {...state}
           newState.oneSpot.SpotImage = action.spotId.url
           // newState.everySpot.SpotImage = action.spotId.url
-          console.log("newStateimage",newState)
+         
         ;
         return newState
       default:

@@ -60,8 +60,7 @@ useEffect(()=>{
   // if(name.length>50)errors.push("Name must be less than 50 characters")
   setErrorMessages(errors)
 },[price,lat,lng,url,country])
-console.log("juan", typeof ("1"))
-console.log("country", typeof country)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessages([])

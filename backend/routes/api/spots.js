@@ -93,8 +93,7 @@ let {size,page} = req.query
             attributes:['url'],
             raw:true
         })
-        console.log(avg[0].average)
-        console.log(typeof(avg[0].average))
+     
        spott.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
         spott.previewImage = allowPreview.url
@@ -123,7 +122,7 @@ let {size,page} = req.query
             
         })
       
-        console.log(owner,"lmao")
+       
         const avg = await Review.findAll({
             where: { spotId: newSpot.Spot.id},
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average'],
@@ -135,16 +134,15 @@ let {size,page} = req.query
             attributes:['id','url','preview'],
             raw:true
         })
-        console.log(avg[0].average)
-        console.log(typeof(avg[0].average))
+      
         newSpot.Spot.numReviews = (Number(avg[0].count))
         newSpot.Spot.avgRating = (Number(avg[0].average).toFixed(1))
        if(allowPreview){
         newSpot.Spot.SpotImages = allowPreview
        }
-       console.log(owner)
+      
        newSpot.Spot.Owner= owner
-    console.log(owner)
+    
     return res.json(newSpot.Spot)
   })
 
@@ -233,7 +231,7 @@ let {size,page} = req.query
         raw:true,
         where:{spotId:spotId}
     })
-    console.log(allReviews)
+    
     if(!spot){
         res.status(404)
         return res.json({
@@ -342,7 +340,7 @@ router.post('/:spotId/reviews',requireAuth,validateReview, async (req, res) => {
     }
     const sameReview = await Review.findAll({where:{userId:req.user.id,
         spotId:findSpot.id}})
-    console.log(sameReview)
+  
     if(sameReview.length){
         res.status(403)
         return res.json({
@@ -368,7 +366,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res) => {
     raw:true,
     where:{spotId}
 })
-console.log(myBookings,"pepe")
+
   const searchSpot = await Spot.findByPk(spotId)
     if(!searchSpot){
       res.status(404)
@@ -383,11 +381,11 @@ console.log(myBookings,"pepe")
         attributes:['id','firstName','lastName'],
         where:{id:req.user.id}
         })
-        console.log("lmao")
+        
       theBookings.Bookings = myBookings
       for (let smol of myBookings){
         smol.User = findme
-        console.log(smol)
+      
       }
       return res.json(theBookings)
     }
@@ -437,7 +435,7 @@ router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) =>
       }
     })
   }
-  console.log(startDate<endDate)
+
   const {spotId} = req.params
   const findSpot = await Spot.findOne({where:{
     id:spotId
@@ -454,23 +452,11 @@ router.post('/:spotId/bookings',requireAuth,validateBooking, async (req, res) =>
     where:{spotId}
   })
   for (let bookings of booked){
-    console.log(startDate,'1')
-      console.log(endDate,'2')
-      console.log(bookings.endDate,'3')
-      console.log(bookings.startDate,'4')
-      console.log(Date(bookings.endDate)>Date(endDate),'5')
-      console.log(Date(bookings.endDate)<Date(endDate),'6')
-      console.log(Date(bookings.endDate)>Date(startDate),'11')
-      console.log(Date(bookings.endDate)<Date(startDate),'22')
-      console.log(Date(bookings.endDate),'7')
-      console.log(Date(bookings.startDate),'8')
-      console.log(Date(startDate))
-      console.log(new Date(endDate))
-      console.log(new Date(bookings.endDate))
+   
       
     if(((new Date(startDate)) >= (new Date(bookings.startDate))) && ((new Date(startDate) <= (new Date(bookings.endDate)))) ||
        (((new Date(endDate) >= (new Date(bookings.startDate))) && ((new Date(endDate) <= (new Date(bookings.endDate))))))){
-        console.log 
+        
         res.status(403)
       return res.json({
         "message": "Sorry, this spot is already booked for the specified dates",

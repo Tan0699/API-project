@@ -104,7 +104,7 @@ const EditMySpot = () => {
       dispatch(getAllSpots())
       history.push('/');
     }
-    console.log("errormshshhs", setErrorMessages)
+    
   }
 
   return (

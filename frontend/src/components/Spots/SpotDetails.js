@@ -50,7 +50,7 @@ const ShowSpot = () => {
     // const onlyone = revValues?.filter(review =>((
     //     review.userId!==sessionUser?.id)))
     // console.log("one rev",onlyone)
-    console.log("only1rev", nodupeReview)
+   
     if (!getReviews) return null
     // console.log("rev",revValues)
     const helper = async (reviewId) => {
